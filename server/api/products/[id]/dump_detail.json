@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Dong ho 1",
+  "category": ["Dong ho nam", "Dong ho doi"],
+  "price": 3000000,
+  "detail": {
+    "xuatxu": "Nhat ban",
+    "baohanh": "1 nam"
+  },
+  "images": []
+}

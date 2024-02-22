@@ -7,7 +7,15 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "start": "node .output/server/index.mjs",
+    "postinstall": "nuxt prepare",
+    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check --ignore-path .prettierignore .",
+    "lint:css": "stylelint --fix **/*.{css,scss,sass} --ignore-path .gitignore --config-basedir ./assets/styles/ --allow-empty-input",
+    "lint:staged": "lint-staged",
+    "lint": "yarn lint:js && yarn lint:css && yarn lint:prettier",
+    "lintfix": "prettier --write --list-different . && yarn lint:js --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.19",
@@ -18,10 +26,21 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "typescript": "^5.3.3",
     "@element-plus/nuxt": "^1.0.7",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
     "sass": "^1.71.1",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^5.1.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "prettier-stylelint": "^0.4.2",
+    "husky": "^8.0.3"
   }
 }

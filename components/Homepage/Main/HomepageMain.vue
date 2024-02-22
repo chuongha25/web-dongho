@@ -7,7 +7,7 @@
         Customers also purchased
       </h2>
 
-      <div
+      <!-- <div
         class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
       >
         <div
@@ -118,12 +118,35 @@
             <p class="text-sm font-medium text-gray-900">{{ product.price }}</p>
           </div>
         </div>
+      </div> -->
+    
+      <div v-for="donghoname in props.donghoname" :key="donghoname.id">
+        {{ donghoname.name }}
       </div>
+
+      <div v-for="donghonu in props.donghonu" :key="donghonu.id">
+      {{ 
+        donghonu.name }}</div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+type Product = {
+  id: number,
+  name: string,
+  category: string[],
+  price: number,
+  image: string,
+}
+type Props = {
+    donghoname?: Product[],
+    donghonu?: Product[]
+}
+const props = withDefaults(defineProps<Props>(), {
+    donghoname: () => ([]),
+    donghonu: () => ([])
+}) 
 const products = [
   {
     id: 1,
