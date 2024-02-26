@@ -3,11 +3,11 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   components: [
     {
-      path: "~/components",
+      path: '~/components',
       pathPrefix: false,
     },
   ],
-  modules: ["@element-plus/nuxt"],
+  modules: ['@element-plus/nuxt'],
   build: {
     extend(config, { isClient }) {
       // Thêm cấu hình cho dynamic import
@@ -15,20 +15,29 @@ export default defineNuxtConfig({
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"],
-            plugins: ["@babel/plugin-syntax-dynamic-import"],
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-syntax-dynamic-import'],
           },
         },
-      });
+      })
     },
   },
-  css: ["~/assets/css/tailwind.css"],
+  css: ['~/assets/css/tailwind.css'],
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-});
+  head: {
+    // Thêm link tới Font Awesome CSS
+    link: [
+      {
+        rel: 'stylesheet',
+        href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+      },
+    ],
+  },
+})

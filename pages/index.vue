@@ -1,22 +1,23 @@
 <template>
-  <div>
-    <HomepageHeader />
-    <HomepageMain :data="{donghoname: donhonamData, donghonu: donghonuData}"/>
-    <HomepagePagination />
-    <HomepageFooter />
+  <div class="main">
+    <HomepageMain
+      :data="{ donghoname: donhonamData, donghonu: donghonuData }"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-const {data: donhonamData} = useFetch('/api/products', {
-  query: { category: "Dong ho nam"}
+definePageMeta({
+  layout: 'custom',
+})
+const { data: donhonamData } = useFetch('/api/products', {
+  query: { category: 'Dong ho nam' },
 })
 
-const {data: donghonuData} = useFetch('/api/products', {
-  query: { category: "Dong ho nu"}
+const { data: donghonuData } = useFetch('/api/products', {
+  query: { category: 'Dong ho nu' },
 })
-console.log(donhonamData);
-
+console.log(donhonamData)
 </script>
 
 <style lang="scss">

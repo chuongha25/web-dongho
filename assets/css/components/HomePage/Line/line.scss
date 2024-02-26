@@ -1,0 +1,10 @@
+.line {
+  margin-bottom: 24px;
+  &__row {
+    div {
+      width: 100%;
+      height: 1;
+      border-top: 2px solid var(--el-border-color);
+    }
+  }
+}

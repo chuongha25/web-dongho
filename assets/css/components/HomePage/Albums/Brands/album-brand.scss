@@ -1,0 +1,20 @@
+.albums {
+  &__grid {
+    margin-bottom: 30px;
+
+    .albums__item {
+      border-radius: 4px;
+
+      .albums__img {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .albums__img:hover img {
+        cursor: pointer;
+        transition: all 0.5s;
+        transform: scale(1.2);
+      }
+    }
+  }
+}

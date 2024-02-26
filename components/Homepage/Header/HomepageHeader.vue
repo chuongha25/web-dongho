@@ -1,262 +1,75 @@
 <template>
-  <header class="bg-white">
-    <nav
-      class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-      aria-label="Global"
-    >
-      <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
+  <div class="header container mx-auto px-4">
+    <div class="header__brand">
+      <div class="header__brand__logo">
+        <a href="#">
           <img
-            class="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt=""
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpsi8bgtXW-1-HbIKYTcbRX6X6jewBiMqeCQ&usqp=CAU"
+            alt="Logo"
           />
         </a>
       </div>
-      <div class="flex lg:hidden">
-        <button
-          type="button"
-          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          @click="mobileMenuOpen = true"
-        >
-          <span class="sr-only">Open main menu</span>
-          <Bars3Icon class="h-6 w-6" aria-hidden="true" />
-        </button>
-      </div>
-      <PopoverGroup class="hidden lg:flex lg:gap-x-12">
-        <Popover class="relative">
-          <PopoverButton
-            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
-          >
-            Brands
-            <ChevronDownIcon
-              class="h-5 w-5 flex-none text-gray-400"
-              aria-hidden="true"
-            />
-          </PopoverButton>
-
-          <transition
-            enter-active-class="transition ease-out duration-200"
-            enter-from-class="opacity-0 translate-y-1"
-            enter-to-class="opacity-100 translate-y-0"
-            leave-active-class="transition ease-in duration-150"
-            leave-from-class="opacity-100 translate-y-0"
-            leave-to-class="opacity-0 translate-y-1"
-          >
-            <PopoverPanel
-              class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
-            >
-              <div class="p-4">
-                <div
-                  v-for="item in products"
-                  :key="item.name"
-                  class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                >
-                  <div
-                    class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white"
-                  >
-                    <component
-                      :is="item.icon"
-                      class="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div class="flex-auto">
-                    <a
-                      :href="item.href"
-                      class="block font-semibold text-gray-900"
-                    >
-                      {{ item.name }}
-                      <span class="absolute inset-0" />
-                    </a>
-                    <p class="mt-1 text-gray-600">{{ item.description }}</p>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50"
-              >
-                <a
-                  v-for="item in callsToAction"
-                  :key="item.name"
-                  :href="item.href"
-                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                >
-                  <component
-                    :is="item.icon"
-                    class="h-5 w-5 flex-none text-gray-400"
-                    aria-hidden="true"
-                  />
-                  {{ item.name }}
-                </a>
-              </div>
-            </PopoverPanel>
-          </transition>
-        </Popover>
-
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-          >Đồng Hồ Nam</a
-        >
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-          >Đồng Hồ Nữ</a
-        >
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-          >Contact</a
-        >
-      </PopoverGroup>
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-          >Log in <span aria-hidden="true">&rarr;</span></a
-        >
-      </div>
-    </nav>
-    <Dialog
-      as="div"
-      class="lg:hidden"
-      @close="mobileMenuOpen = false"
-      :open="mobileMenuOpen"
-    >
-      <div class="fixed inset-0 z-10" />
-      <DialogPanel
-        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-      >
-        <div class="flex items-center justify-between">
-          <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
-            <img
-              class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
-          </a>
-          <button
-            type="button"
-            class="-m-2.5 rounded-md p-2.5 text-gray-700"
-            @click="mobileMenuOpen = false"
-          >
-            <span class="sr-only">Close menu</span>
-            <XMarkIcon class="h-6 w-6" aria-hidden="true" />
-          </button>
+      <div class="header__brand__right">
+        <div class="header__search">
+          <el-input
+            v-model="input1"
+            class="w-50"
+            size="large"
+            placeholder="Tìm sản phẩm"
+            :prefix-icon="Search"
+          />
         </div>
-        <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-gray-500/10">
-            <div class="space-y-2 py-6">
-              <Disclosure as="div" class="-mx-3" v-slot="{ open }">
-                <DisclosureButton
-                  class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Product
-                  <ChevronDownIcon
-                    :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']"
-                    aria-hidden="true"
-                  />
-                </DisclosureButton>
-                <DisclosurePanel class="mt-2 space-y-2">
-                  <DisclosureButton
-                    v-for="item in [...products, ...callsToAction]"
-                    :key="item.name"
-                    as="a"
-                    :href="item.href"
-                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >{{ item.name }}</DisclosureButton
-                  >
-                </DisclosurePanel>
-              </Disclosure>
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Features</a
-              >
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Marketplace</a
-              >
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Company</a
-              >
-            </div>
-            <div class="py-6">
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Log in</a
-              >
-            </div>
+        <div class="header__card">
+          <div class="header__card__scoped">
+            <a href="#">
+              <el-icon>
+                <ShoppingCart />
+              </el-icon>
+            </a>
           </div>
         </div>
-      </DialogPanel>
-    </Dialog>
-  </header>
+      </div>
+    </div>
+    <div class="header__menu">
+      <el-menu
+        :default-active="activeIndex"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+      >
+        <el-sub-menu index="1">
+          <template #title>Thương Hiệu</template>
+          <el-menu-item index="1-1">Casio</el-menu-item>
+          <el-menu-item index="1-2">Citizen</el-menu-item>
+          <el-menu-item index="1-3">Orient</el-menu-item>
+        </el-sub-menu>
+        <el-menu-item index="2">Nam</el-menu-item>
+        <el-menu-item index="3">Nữ</el-menu-item>
+        <el-menu-item index="4">Cặp Đôi</el-menu-item>
+        <el-sub-menu index="5">
+          <template #title>Phụ Kiện</template>
+          <el-menu-item index="5-1">Dây da đồng hồ</el-menu-item>
+          <el-menu-item index="5-2">Dây kim loại</el-menu-item>
+          <el-menu-item index="5-3">Kính cường lực</el-menu-item>
+        </el-sub-menu>
+        <el-menu-item index="6">Liện Hệ</el-menu-item>
+        <el-menu-item index="7">Thông Tin</el-menu-item>
+      </el-menu>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import {
-  Dialog,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-} from "@headlessui/vue";
-import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-} from "@heroicons/vue/24/outline";
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from "@heroicons/vue/20/solid";
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { Search, ShoppingCart } from '@element-plus/icons-vue'
+const input1 = ref('')
 
-const products = [
-  {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
-    href: "#",
-    icon: ChartPieIcon,
-  },
-  {
-    name: "Engagement",
-    description: "Speak directly to your customers",
-    href: "#",
-    icon: CursorArrowRaysIcon,
-  },
-  {
-    name: "Security",
-    description: "Your customers’ data will be safe and secure",
-    href: "#",
-    icon: FingerPrintIcon,
-  },
-  {
-    name: "Integrations",
-    description: "Connect with third-party tools",
-    href: "#",
-    icon: SquaresPlusIcon,
-  },
-  {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
-    icon: ArrowPathIcon,
-  },
-];
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
-];
-
-const mobileMenuOpen = ref(false);
+const activeIndex = ref('1')
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
 </script>
+
+<style lang="scss">
+@import '@/assets/css/components/HomePage/Header/header.scss';
+</style>

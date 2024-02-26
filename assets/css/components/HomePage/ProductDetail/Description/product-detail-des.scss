@@ -1,0 +1,126 @@
+.description {
+  font-family: Roboto, sans-serif;
+
+  &__logo {
+    img {
+      max-width: 120px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title {
+    h1 {
+      font-size: 22px;
+      color: #676767;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__text {
+    margin-bottom: 5px;
+
+    strong {
+      font-size: 16px;
+      color: #676767;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+  }
+
+  &__price {
+    p {
+      margin-bottom: 10px;
+
+      span {
+        font-size: 28px;
+        color: #c40d2e;
+        font-weight: 550;
+      }
+    }
+  }
+
+  &__content {
+    p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: #676767;
+    }
+  }
+
+  &__wrap {
+    button {
+      background: #6c6d70;
+      color: #fff;
+      width: 100%;
+      margin-bottom: 10px;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      font-size: 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+
+  &__add-to-card {
+    button {
+      background: #993333;
+      color: #fff;
+      width: 100%;
+      margin-bottom: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+  }
+
+  &__contact {
+    font-size: 17px;
+    color: #676767;
+    margin-bottom: 14px;
+  }
+
+  &__endow {
+    padding: 10px 10px 10px 20px;
+    background-color: rgb(237, 237, 237);
+    border-radius: 10px;
+
+    p {
+      font-size: 16px;
+      color: #676767;
+      margin-bottom: 8px;
+    }
+
+    .line {
+      width: 100%;
+      height: 0;
+      border-top: 1px solid white;
+      margin-bottom: 8px;
+    }
+
+    .endow-icon {
+      display: flex;
+      align-items: center;
+      line-height: 2;
+
+      .el-icon {
+        color: #993333;
+      }
+
+      p {
+        padding-left: 15px;
+        margin: 0;
+      }
+    }
+
+    .sale {
+      padding-left: 32px;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+  }
+}

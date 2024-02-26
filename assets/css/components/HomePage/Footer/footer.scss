@@ -1,7 +1,70 @@
 .footer {
-  width: 100%;
-  height: 64px;
-  background-color: grey;
-  text-align: center;
-  font-size: 24px;
+  height: 500px;
+
+  &__content {
+    background-color: #3d3d3d;
+    padding-top: 30px;
+
+    .footer__item {
+      margin-bottom: 24px;
+
+      .footer-infor {
+        color: #f1f1f1;
+        font-family: Roboto, sans-serif;
+
+        .infor-title {
+          font-size: 16px;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .infor-line {
+          height: 3px;
+          margin: 10px 0 16px 0;
+          max-width: 30px;
+          background-color: hsla(0, 0%, 100%, 0.3);
+        }
+
+        .infor-des {
+          font-size: 16px;
+          p {
+            margin-bottom: 24px;
+          }
+        }
+
+        hr {
+          margin: 15px 0;
+        }
+
+        .infor-hotline {
+          margin-top: 15px;
+          margin-bottom: 25px;
+
+          img {
+            width: 60%;
+          }
+        }
+
+        .hotline-mg {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  &__copyright {
+    height: 70px;
+    background-color: black;
+    text-align: center;
+
+    p {
+      font-size: 16px;
+      color: #ffffff80;
+      line-height: 70px;
+
+      span {
+        font-weight: 600;
+      }
+    }
+  }
 }

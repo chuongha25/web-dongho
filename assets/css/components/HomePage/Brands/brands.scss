@@ -1,0 +1,36 @@
+.brand {
+  &__grid {
+    margin-bottom: 30px;
+
+    .brand__item {
+      padding: 17px;
+
+      &__logo {
+        position: relative;
+
+        img {
+          transition: filter 0.2s ease-in;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.3);
+          opacity: 1;
+          transition: opacity 0.5s ease-in;
+        }
+      }
+
+      &__logo:hover .overlay {
+        opacity: 0;
+      }
+
+      &__logo:hover img {
+        filter: brightness(100%);
+      }
+    }
+  }
+}

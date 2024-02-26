@@ -1,0 +1,38 @@
+.social {
+  &__mt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 24px;
+
+    b {
+      height: 2px;
+      background-color: currentColor;
+      flex: 1;
+      opacity: 0.1;
+    }
+
+    span {
+      margin: 0 10px;
+      display: flex;
+
+      a {
+        padding: 0 18px;
+        display: block;
+
+        .social-icon {
+          font-size: 40px;
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 50%;
+          color: #fff;
+        }
+
+        .social-icon:hover {
+          background-color: var(--el-color-primary);
+          transition: all 0.3s ease-in;
+        }
+      }
+    }
+  }
+}

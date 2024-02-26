@@ -1,5 +1,11 @@
 <template>
-  <div>
-    <h1>Brands Casio</h1>
+  <div class="brand">
+    <CategoryBrand />
   </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  layout: 'custom',
+})
+</script>

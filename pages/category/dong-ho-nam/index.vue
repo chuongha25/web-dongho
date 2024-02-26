@@ -1,5 +1,11 @@
 <template>
-  <div>
-    <h1>Dong Ho Nam</h1>
+  <div class="main">
+    <CategoryNam />
   </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  layout: 'custom',
+})
+</script>
