@@ -1,5 +1,5 @@
 <template>
-  <div class="header container mx-auto px-4">
+  <div class="header container mx-auto">
     <div class="header__brand">
       <div class="header__brand__logo">
         <a href="#">

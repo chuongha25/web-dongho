@@ -1,5 +1,5 @@
 <template>
-  <div class="section container mx-auto px-4">
+  <div class="section container mx-auto">
     <h2 class="section__title">
       <b></b>
       <span>

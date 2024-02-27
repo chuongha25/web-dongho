@@ -1,5 +1,5 @@
 <template>
-  <div class="line container mx-auto px-4">
+  <div class="line container mx-auto">
     <div class="line__row">
       <div />
     </div>

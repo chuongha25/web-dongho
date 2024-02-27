@@ -16,16 +16,14 @@
 
 .thumbnail-images {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .thumbnail {
-  // margin-right: 10px;
+  padding: 0 10px;
 }
 
 .thumbnail img {
-  // max-width: 100px;
-  // height: auto;
   width: 80px;
   height: 80px;
   cursor: pointer;

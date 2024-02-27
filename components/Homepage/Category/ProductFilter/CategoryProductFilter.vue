@@ -1,5 +1,5 @@
 <template>
-  <div class="product-filter container mx-auto px-4">
+  <div class="product-filter container mx-auto">
     <el-select
       v-model="value"
       class=""

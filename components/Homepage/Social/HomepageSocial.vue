@@ -1,5 +1,5 @@
 <template>
-  <div class="social container mx-auto px-4">
+  <div class="social container mx-auto">
     <h2 class="social__mt">
       <b></b>
       <span>

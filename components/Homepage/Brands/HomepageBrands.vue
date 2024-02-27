@@ -1,5 +1,5 @@
 <template>
-  <div class="brand container mx-auto px-4">
+  <div class="brand container mx-auto">
     <div
       class="brand__grid grid grid-cols-5 sm:grid-cols-3 md:grid-cols-5 gap-4"
     >

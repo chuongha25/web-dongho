@@ -1,5 +1,5 @@
 <template>
-  <div class="category-navigation container mx-auto px-4">
+  <div class="category-navigation container mx-auto">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">Homepage</el-breadcrumb-item>
       <el-breadcrumb-item><a href="/">Category</a></el-breadcrumb-item>

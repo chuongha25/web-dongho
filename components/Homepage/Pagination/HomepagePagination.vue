@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination container mx-auto px-4">
+  <div class="pagination container mx-auto">
     <el-pagination background layout="prev, pager, next" :total="50" />
   </div>
 </template>

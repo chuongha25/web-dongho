@@ -2,7 +2,7 @@
   <div class="footer">
     <HomepageSocial />
     <div class="footer__content">
-      <div class="container mx-auto px-4">
+      <div class="container mx-auto">
         <div
           class="grid grid-cols-3 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6"
         >
@@ -81,7 +81,7 @@
     </div>
     <div class="footer__copyright">
       <div class="footer__scope">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto">
           <p>
             Copyright 2024 © by
             <span>MCWatch.vn</span>

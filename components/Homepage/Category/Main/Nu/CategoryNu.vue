@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <CategoryNavigation />
-    <div class="category-content container mx-auto px-4">
+    <div class="category-content container mx-auto">
       <CategorySection />
     </div>
     <HomepageTitle />

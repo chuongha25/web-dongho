@@ -1,4 +1,3 @@
-import type { HomepageTitle } from '#build/components';
 <template>
   <div class="section">
     <h1>

@@ -1,8 +1,10 @@
 <template>
   <div class="content">
     <CategoryNavigation />
-    <div class="product-detail container mx-auto px-4">
-      <div class="product-grid grid grid-cols-2 gap-4">
+    <div class="product-detail container mx-auto">
+      <div
+        class="product-grid grid grid-cols-2 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6"
+      >
         <ProductDetailImage />
         <ProductDetailDescription />
       </div>

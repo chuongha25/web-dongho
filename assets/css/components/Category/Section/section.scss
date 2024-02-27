@@ -9,8 +9,11 @@
   }
 
   &__img {
-    width: 100%;
     margin-bottom: 22px;
+
+    img {
+      width: 100%;
+    }
   }
 
   div {

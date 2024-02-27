@@ -1,5 +1,5 @@
 <template>
-  <div class="albums container mx-auto px-4">
+  <div class="albums container mx-auto">
     <div
       class="albums__grid grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-4"
     >

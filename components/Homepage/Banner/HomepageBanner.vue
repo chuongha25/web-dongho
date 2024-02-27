@@ -1,5 +1,5 @@
 <template>
-  <div class="banner container mx-auto px-4">
+  <div class="banner container mx-auto">
     <div class="banner__img">
       <img
         src="https://fridayshopping.vn/wp-content/uploads/2023/01/5-ly-do-mua-tai-fridayshopping-pc.jpg"
