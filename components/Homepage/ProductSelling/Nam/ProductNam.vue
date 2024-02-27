@@ -6,7 +6,7 @@
       <div class="product__item">
         <div class="product__small">
           <div class="product__img">
-            <a href="#">
+            <NuxtLink to="/product/detail">
               <img
                 class="product__after"
                 src="https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF.jpg"
@@ -17,7 +17,7 @@
                 src="https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF-1.jpg"
                 alt="Product Image Zoom"
               />
-            </a>
+            </NuxtLink>
           </div>
           <div class="product__des">
             <div class="des-title">

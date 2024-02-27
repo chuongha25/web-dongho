@@ -5,32 +5,32 @@
     >
       <div class="service__item">
         <div class="service__item__img">
-          <a href="#">
+          <NuxtLink to="/">
             <img
               src="https://image.donghohaitrieu.com/wp-content/uploads/2024/01/hinh-dich-vu-sua-chua-dong-ho.jpg"
               alt="Service"
             />
-          </a>
+          </NuxtLink>
         </div>
       </div>
       <div class="service__item">
         <div class="service__item__img">
-          <a href="#">
+          <NuxtLink to="/">
             <img
               src="https://image.donghohaitrieu.com/wp-content/uploads/2024/01/hinh-dich-vu-in-khac-laser.jpg"
               alt="Service"
             />
-          </a>
+          </NuxtLink>
         </div>
       </div>
       <div class="service__item">
         <div class="service__item__img">
-          <a href="#">
+          <NuxtLink to="/">
             <img
               src="https://image.donghohaitrieu.com/wp-content/uploads/2024/01/hinh-dich-vu-khach-hang-doanh-nghiep.jpg"
               alt="Service"
             />
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>

@@ -34,7 +34,9 @@
     </div>
     <div class="description__add-to-card">
       <form>
-        <button type="submit">Thêm vào giỏ hàng</button>
+        <NuxtLink to="/cart">
+          <button type="submit">Thêm vào giỏ hàng</button>
+        </NuxtLink>
       </form>
     </div>
     <p class="description__contact">
