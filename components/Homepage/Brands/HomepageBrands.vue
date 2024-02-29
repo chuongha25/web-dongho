@@ -1,7 +1,8 @@
 <template>
   <div class="brand container mx-auto">
+    <HomepageTitle :title="props.title" />
     <div
-      class="brand__grid grid grid-cols-5 sm:grid-cols-3 md:grid-cols-5 gap-4"
+      class="brand__grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-4"
     >
       <div class="brand__item">
         <div class="brand__item__logo">
@@ -116,6 +117,12 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<{ title: string }>(), {
+  title: '',
+})
+</script>
 
 <style lang="scss">
 @import './assets/css/components/HomePage/Brands/brands.scss';

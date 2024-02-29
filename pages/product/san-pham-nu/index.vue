@@ -1,6 +1,6 @@
 <template>
-  <div class="brand">
-    <BrandCasio />
+  <div class="main">
+    <ProductDetailNu />
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
   <div class="albums container mx-auto">
+    <HomepageTitle title="Bộ sưu tập" />
     <div
       class="albums__grid grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-6"
     >

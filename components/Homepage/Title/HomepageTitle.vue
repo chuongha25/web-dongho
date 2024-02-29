@@ -1,10 +1,10 @@
 <template>
-  <div class="section container mx-auto">
+  <div class="section">
     <h2 class="section__title">
       <b></b>
       <span>
-        <el-icon><ArrowDown /></el-icon>
-        Bộ Sưu Tập Nổi Bật
+        <ElIcon><ArrowDown /></ElIcon>
+        {{ props.title }}
       </span>
       <b></b>
     </h2>
@@ -13,6 +13,10 @@
 
 <script setup lang="ts">
 import { ArrowDown } from '@element-plus/icons-vue'
+
+const props = withDefaults(defineProps<{ title: string }>(), {
+  title: '',
+})
 </script>
 
 <style lang="scss">

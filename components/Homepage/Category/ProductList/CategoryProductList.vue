@@ -1,7 +1,7 @@
 <template>
   <div class="product-list container mx-auto">
     <div
-      class="product-list__grid grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      class="product-list__grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
       <div class="product-list__item">
         <div class="product__small">

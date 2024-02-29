@@ -1,8 +1,9 @@
 <template>
-  <div v-if="product" class="image-detail">
+  <div v-if="product" class="product-image">
     <!-- Ảnh lớn của sản phẩm -->
-    <div class="product-image">
+    <div class="product-image__main">
       <img
+        class="product-image__main__image"
         :src="product.imageLarge"
         alt="Product Image"
         v-if="product.imageLarge"
@@ -10,13 +11,14 @@
     </div>
 
     <!-- Danh sách các ảnh nhỏ -->
-    <div class="thumbnail-images">
+    <div class="product-image__thumbnail">
       <div
         v-for="(thumbnail, index) in product.thumbnailImages"
         :key="index"
-        class="thumbnail"
+        class="product-image__thumbnail__wrapper"
       >
         <img
+          class="product-image__thumbnail__wrapper__image"
           :src="thumbnail"
           alt="Thumbnail Image"
           @click="changeLargeImage(thumbnail)"
@@ -50,5 +52,5 @@ const changeLargeImage = (imageUrl: string) => {
 </script>
 
 <style lang="scss">
-@import './assets/css/components/HomePage/ProductDetail/Image/product-detail-image.scss';
+@import '~/assets/css/components/HomePage/ProductDetail/Image/product-detail-image.scss';
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div class="albums container mx-auto">
+    <HomepageTitle :title="props.title" />
     <div
-      class="albums__grid grid grid-cols-6 sm:grid-cols-3 md:grid-cols-6 gap-4"
+      class="albums__grid grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4"
     >
       <div class="albums__item">
         <div class="albums__img">
@@ -127,7 +128,11 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = withDefaults(defineProps<{ title: string }>(), {
+  title: '',
+})
+</script>
 
 <style lang="scss">
 @import './assets/css/components/HomePage/Albums/albums.scss';

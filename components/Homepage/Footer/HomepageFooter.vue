@@ -4,7 +4,7 @@
     <div class="footer__content">
       <div class="container mx-auto">
         <div
-          class="grid grid-cols-3 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6"
+          class="footer__content__grid grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6"
         >
           <div class="footer__item">
             <div class="footer-infor">
@@ -17,7 +17,7 @@
                   />
                 </a>
               </div>
-              <span>
+              <span class="fanpage">
                 <strong>FanPage: </strong>
                 MCWatch.vn
               </span>

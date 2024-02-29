@@ -1,6 +1,6 @@
 <template>
   <div class="brand">
-    <CategoryBrand />
+    <BrandOrient />
   </div>
 </template>
 

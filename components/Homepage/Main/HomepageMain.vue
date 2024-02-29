@@ -1,44 +1,36 @@
 <template>
   <div class="content">
     <HomepageSlider />
-    <HomepageTitle />
-    <HomepageAlbums />
-    <HomepageTitle />
-    <ProductNam />
-    <HomepageTitle />
-    <ProductNam />
-    <HomepageTitle />
-    <HomepageService />
-    <HomepageTitle />
-    <HomepageBrands />
+    <HomepageAlbums title="Bộ sưu tập nổi bật" />
+    <ProductSellingNam
+      :products="props.data.donghoname"
+      title="Đồng hồ nam bán chạy"
+    />
+    <ProductSellingNu
+      :products="props.data.donghonu"
+      title="Đồng hồ nữ bán chạy"
+    />
+    <HomepageService title="Các dịch vụ tại cửa hàng" />
+    <HomepageBrands title="Thương hiệu nổi tiếng" />
     <Line />
     <HomepageBanner />
-
-    <div v-for="donghoname in props.donghoname" :key="donghoname.id">
-      {{ donghoname.name }}
-    </div>
-
-    <div v-for="donghonu in props.donghonu" :key="donghonu.id">
-      {{ donghonu.name }}
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-type Product = {
-  id: number
-  name: string
-  category: string[]
-  price: number
-  image: string
-}
+import type { Product } from '~/types/product'
+
 type Props = {
-  donghoname?: Product[]
-  donghonu?: Product[]
+  data: {
+    donghoname?: Product[]
+    donghonu?: Product[]
+  }
 }
 const props = withDefaults(defineProps<Props>(), {
-  donghoname: () => [],
-  donghonu: () => [],
+  data: () => ({
+    donghoname: [],
+    donghonu: [],
+  }),
 })
 </script>
 

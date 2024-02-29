@@ -1,7 +1,8 @@
 <template>
   <div class="service container mx-auto">
+    <HomepageTitle :title="props.title" />
     <div
-      class="service__grid grid grid-cols-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16"
+      class="service__grid grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8"
     >
       <div class="service__item">
         <div class="service__item__img">
@@ -36,6 +37,12 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<{ title: string }>(), {
+  title: '',
+})
+</script>
 
 <style lang="scss">
 @import './assets/css/components/HomePage/Service/service.scss';

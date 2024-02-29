@@ -3,7 +3,7 @@
     margin-bottom: 30px;
 
     .brand__item {
-      padding: 17px;
+      @apply lg:p-[10px] xl:p-[16px];
 
       &__logo {
         position: relative;

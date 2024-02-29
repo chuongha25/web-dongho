@@ -1,20 +1,25 @@
 <template>
   <div class="product container mx-auto">
+    <HomepageTitle :title="props.title" />
     <div
-      class="product__grid grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      class="product__grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
-      <div class="product__item">
+      <div
+        class="product__item"
+        v-for="productItem in props.products"
+        :key="productItem.id"
+      >
         <div class="product__small">
           <div class="product__img">
             <NuxtLink to="/product/detail">
               <img
                 class="product__after"
-                src="https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF.jpg"
+                :src="productItem.images[0]"
                 alt="Product Image"
               />
               <img
                 class="product__before"
-                src="https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF-1.jpg"
+                :src="productItem.images[1]"
                 alt="Product Image Zoom"
               />
             </NuxtLink>
@@ -22,17 +27,16 @@
           <div class="product__des">
             <div class="des-title">
               <p>
-                Casio World Time AE-1200WHD-1AVDF – Nam – Quartz (Pin) – Mặt Số
-                45 mm, Bộ Bấm Giờ, Chống Nước 10 ATM
+                {{ productItem.name }}
               </p>
             </div>
             <div class="des-price">
-              <span>1.373.000 ₫</span>
+              <span>{{ formatPrice(productItem.price) }}</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="product__item">
+      <!-- <div class="product__item">
         <div class="product__small">
           <div class="product__img">
             <a href="#">
@@ -234,11 +238,24 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
+<script setup lang="ts">
+import type { Product } from '~/types/product'
+const props = withDefaults(
+  defineProps<{
+    products: Product[]
+    title: string
+  }>(),
+  {
+    products: () => [],
+    title: '',
+  },
+)
+</script>
 <style lang="scss">
-@import './assets/css/components/HomePage/ProductSelling/Nam/product-nam.scss';
+@import './assets/css/components/HomePage/ProductSelling/product-selling.scss';
 </style>
