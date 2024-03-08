@@ -1,17 +1,13 @@
 <template>
-  <div class="description">
+  <div class="description" v-if="descriptionData">
     <div class="description__logo">
       <a href="#">
-        <img
-          src="https://image.donghohaitrieu.com/wp-content/uploads/logo/casio.jpg"
-          alt="Logo"
-        />
+        <img :src="descriptionData.logoBrand" alt="Logo" />
       </a>
     </div>
     <div class="description__title">
       <h1>
-        Casio World Time AE-1200WHD-1AVDF – Nam – Quartz (Pin) – Mặt Số 45 mm,
-        Bộ Bấm Giờ, Chống Nước 10 ATM
+        {{ descriptionData.name }}
       </h1>
     </div>
     <div class="description__text">
@@ -19,14 +15,12 @@
     </div>
     <div class="description__price">
       <p>
-        <span> 1.373.000 ₫ </span>
+        <span> {{ formatPrice(descriptionData.price) }} </span>
       </p>
     </div>
     <div class="description__content">
       <p>
-        Đồng hồ nam Casio AE1200WHD có mặt đồng hồ vuông to với phong cách thể
-        thao, mặt số điện tử với những tính năng hiện đại tiện dụng, kết hợp với
-        dây đeo bằng kim loại đem lại vẻ mạnh mẽ cá tính dành cho phái nam.
+        {{ descriptionData.description }}
       </p>
     </div>
     <div class="description__wrap">
@@ -71,6 +65,17 @@
 
 <script setup lang="ts">
 import { SuccessFilled } from '@element-plus/icons-vue'
+import type { Product } from '~/types/product'
+
+const { descriptionData } = withDefaults(
+  defineProps<{
+    descriptionData?: Product | null
+  }>(),
+  {
+    descriptionData: null,
+  },
+)
+// console.log(descriptionData)
 </script>
 
 <style lang="scss">

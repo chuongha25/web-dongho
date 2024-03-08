@@ -1,19 +1,19 @@
 <template>
-  <div v-if="product" class="product-image">
+  <div v-if="imageData?.imagesDetail" class="product-image">
     <!-- Ảnh lớn của sản phẩm -->
     <div class="product-image__main">
       <img
         class="product-image__main__image"
-        :src="product.imageLarge"
+        :src="imageData?.imagesDetail.imageLarge"
         alt="Product Image"
-        v-if="product.imageLarge"
+        v-if="imageData?.imagesDetail.imageLarge"
       />
     </div>
 
     <!-- Danh sách các ảnh nhỏ -->
     <div class="product-image__thumbnail">
       <div
-        v-for="(thumbnail, index) in product.thumbnailImages"
+        v-for="(thumbnail, index) in imageData?.imagesDetail.thumbnailImages"
         :key="index"
         class="product-image__thumbnail__wrapper"
       >
@@ -29,26 +29,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import type { Product } from '~/types/product'
 
-const product = ref({
-  imageLarge:
-    'https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF.jpg', // Thay đổi đường dẫn ảnh lớn tại đây
-  thumbnailImages: [
-    'https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF.jpg', // Thay đổi đường dẫn ảnh nhỏ 1 tại đây
-    'https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF-4.jpg', // Thay đổi đường dẫn ảnh nhỏ 2 tại đây
-    'https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF-2.jpg', // Thay đổi đường dẫn ảnh nhỏ 3 tại đây
-    'https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF-3.jpg', // Thay đổi đường dẫn ảnh nhỏ 4 tại đây
-    'https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF-1.jpg', // Thay đổi đường dẫn ảnh nhỏ 4 tại đây
-  ],
-})
+const { imageData } = withDefaults(
+  defineProps<{
+    imageData?: Product | null
+  }>(),
+  {
+    imageData: null,
+  },
+)
 
 const changeLargeImage = (imageUrl: string) => {
   // Chỉ cập nhật ảnh lớn nếu product đã được khởi tạo
-  if (product.value) {
-    product.value.imageLarge = imageUrl
+  if (imageData && imageData?.imagesDetail) {
+    imageData.imagesDetail.imageLarge = imageUrl
   }
 }
+// console.log(imageData?.imagesDetail)
 </script>
 
 <style lang="scss">

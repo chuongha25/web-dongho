@@ -1,23 +1,39 @@
 <template>
   <div class="main">
     <HomepageMain
-      :data="{ donghoname: donhonamData, donghonu: donghonuData }"
+      v-if="donhonamsellingData && donhonusellingData"
+      :data="{
+        donghonamselling: donhonamsellingData,
+        donghonuselling: donhonusellingData,
+      }"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Product } from '~/types/product'
 definePageMeta({
   layout: 'custom',
 })
-const { data: donhonamData } = useFetch('/api/products', {
-  query: { category: 'Dong ho nam' },
+
+const { data: donhonamsellingData } = useFetch<Product[]>('/api/products', {
+  query: { category: 'dong-ho-nam-selling' },
 })
 
-const { data: donghonuData } = useFetch('/api/products', {
-  query: { category: 'Dong ho nu' },
+const { data: donhonusellingData } = useFetch<Product[]>('/api/products', {
+  query: { category: 'dong-ho-nu-selling' },
 })
-console.log(donhonamData)
+
+// console.log(donhonamsellingData)
+// console.log(donhonusellingData)
+
+// const { data: allProductsData } = useFetch('/api/products');
+// const donhonamsellingData = ref([]);
+// const donhonusellingData = ref([]);
+// if (allProductsData.value) {
+//   donhonamsellingData.value = allProductsData.value.filter(product => product.category === 'dong-ho-nam-selling');
+//   donhonusellingData.value = allProductsData.value.filter(product => product.category === 'dong-ho-nu-selling');
+// }
 </script>
 
 <style lang="scss">

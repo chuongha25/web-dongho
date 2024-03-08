@@ -40,4 +40,10 @@ export default defineNuxtConfig({
       },
     ],
   },
+  nitro: {
+    plugins: ['@/server/db/index.ts'],
+  },
+  runtimeConfig: {
+    MONGO_URI: process.env.VITE_MONGO_URI,
+  },
 })

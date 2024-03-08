@@ -1,6 +1,6 @@
 <template>
   <div class="albums container mx-auto">
-    <HomepageTitle title="Bộ sưu tập" />
+    <HomepageTitle :title="props.title" />
     <div
       class="albums__grid grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-6"
     >
@@ -68,7 +68,11 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = withDefaults(defineProps<{ title: string }>(), {
+  title: '',
+})
+</script>
 
 <style lang="scss">
 @import './assets/css/components/HomePage/Albums/Brands/album-brand.scss';

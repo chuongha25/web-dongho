@@ -2,12 +2,14 @@
   <div class="content">
     <HomepageSlider />
     <HomepageAlbums title="Bộ sưu tập nổi bật" />
-    <ProductSellingNam
-      :products="props.data.donghoname"
+    <ProductSelling
+      :products="props.data.donghonamselling"
+      category="dong-ho-nam"
       title="Đồng hồ nam bán chạy"
     />
-    <ProductSellingNu
-      :products="props.data.donghonu"
+    <ProductSelling
+      :products="props.data.donghonuselling"
+      category="dong-ho-nu"
       title="Đồng hồ nữ bán chạy"
     />
     <HomepageService title="Các dịch vụ tại cửa hàng" />
@@ -22,14 +24,14 @@ import type { Product } from '~/types/product'
 
 type Props = {
   data: {
-    donghoname?: Product[]
-    donghonu?: Product[]
+    donghonamselling?: Product[]
+    donghonuselling?: Product[]
   }
 }
 const props = withDefaults(defineProps<Props>(), {
   data: () => ({
-    donghoname: [],
-    donghonu: [],
+    donghonamselling: [],
+    donghonuselling: [],
   }),
 })
 </script>
