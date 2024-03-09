@@ -7,9 +7,17 @@ import { Nitro } from 'nitropack'
 export default async (_nitroApp: Nitro) => {
   //run your connect code here
   const config = useRuntimeConfig()
+  const options = {
+    dbName: config.MONGO_DB,
+    user: config.MONGO_USER,
+    pass: config.MONGO_PASS,
+    authSource: config.MONGO_AUTH_SOURCE,
+  }
+  console.log(config.MONGO_URI, options)
+
   // connect to mongodb
   mongoose
-    .connect(config.MONGO_URI)
+    .connect(config.MONGO_URI, options)
     .then(() => console.log(`Connected to DB`))
     .catch((e) => console.log(e))
 }
