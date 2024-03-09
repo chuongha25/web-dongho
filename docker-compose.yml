@@ -4,9 +4,10 @@ services:
   db:
     container_name: mongo-dev
     image: mongo:4.2
+    command: mongod --auth
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_DATABASE=auth
+      - MONGO_INITDB_DATABASE=clocks
       - MONGO_INITDB_ROOT_PASSWORD=pass
     networks:
       - mongo-compose-network
