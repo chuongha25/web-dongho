@@ -1,5 +1,5 @@
 // GET /api/products
-import data from './dum.json'
+import data from '@/server/api/products/dum.json'
 
 export default defineEventHandler((event) => {
   // handle GET requests for the `api/foo` endpoint
