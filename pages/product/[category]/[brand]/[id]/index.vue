@@ -13,7 +13,6 @@ definePageMeta({
 })
 
 const route = useRoute()
-
 const id = route.params.id
 
 const { data: productDetailData } = useFetch<Product>(`/api/products/${id}`)

@@ -7,13 +7,13 @@
       <div
         class="product-list__item"
         v-for="productListItem in props.products"
-        :key="productListItem.id"
+        :key="productListItem._id"
       >
         <div class="product__small">
           <div class="product__img">
             <NuxtLink
               :to="{
-                path: `/product/${props.category ? props.category : props.category === '' ? productListItem.category[0] : ''}/${productListItem.branch}/${productListItem.id}`,
+                path: `/product/${props.category ? props.category : props.category === '' ? productListItem.category[0] : ''}/${productListItem.branch}/${productListItem._id}`,
               }"
             >
               <img
@@ -48,13 +48,13 @@
       <div
         class="product-list__item"
         v-for="productListItem in props.pageIdData"
-        :key="productListItem.id"
+        :key="productListItem._id"
       >
         <div class="product__small">
           <div class="product__img">
             <NuxtLink
               :to="{
-                path: `/product/${props.category ? props.category : props.category === '' ? productListItem.category[0] : ''}/${productListItem.branch}/${productListItem.id}`,
+                path: `/product/${props.category ? props.category : props.category === '' ? productListItem.category[0] : ''}/${productListItem.branch}/${productListItem._id}`,
               }"
             >
               <img

@@ -45,6 +45,10 @@ const schema: mongoose.Schema = new mongoose.Schema(
         required: true,
       },
     },
+    pageId: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true },
 )

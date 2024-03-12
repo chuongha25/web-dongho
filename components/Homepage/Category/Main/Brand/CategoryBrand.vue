@@ -33,9 +33,12 @@
 import type { Product } from '~/types/product'
 const route = useRoute()
 // const category = route.params.category
-const brand = route.params.brand
+const brand = route.params.brand as string
 
-const brands = {
+const brands: Record<
+  string,
+  { title: string; image: string; description: string }
+> = {
   casio: {
     title: 'Đồng hồ Casio nam, nữ chính hãng 100%, BH 5 năm, góp 0%',
     image:
@@ -59,7 +62,7 @@ const brands = {
   },
 }
 
-const brandsTitle = {
+const brandsTitle: Record<string, { title: string }> = {
   casio: {
     title: 'Bộ sưu tập Casio',
   },

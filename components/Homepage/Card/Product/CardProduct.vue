@@ -3,33 +3,35 @@
     <!-- Form Product -->
     <form action="">
       <div class="cart-product__form">
-        <div class="cart-product__form__item">
+        <div
+          class="cart-product__form__item"
+          v-for="(item, index) in listProducts"
+          :key="index"
+        >
+          <Icon name="material-symbols:search" size="20" />
+          <i class="icon-[material-symbols--search]"></i>
           <div class="cart-product__form__item__thumbnail">
             <a href="#">
-              <img
-                src="https://image.donghohaitrieu.com/wp-content/uploads/2023/09/AE-1200WHD-1AVDF.jpg"
-                alt="Image Cart"
-              />
+              <img :src="item.imagesDetail.imageLarge" alt="Image Cart" />
             </a>
           </div>
           <div class="cart-product__form__item__infor">
             <div class="infor-name">
               <p>
-                Casio World Time AE-1200WHD-1AVDF - Nam - Quartz (Pin) - Mặt Số
-                45 mm, Bộ Bấm Giờ, Chống Nước 10 ATM
+                {{ item.name }}
               </p>
             </div>
             <div class="infor-des">
               <div class="infor-des__quantity">
                 <el-input-number
-                  v-model="num"
+                  v-model="item.number"
                   :min="1"
                   :max="10"
                   @click="handleChange"
                 />
               </div>
               <div class="infor-des__subtotal">
-                <span>4.518.000 ₫</span>
+                <span>{{ item.price }}</span>
               </div>
             </div>
             <div class="infor-remove">
@@ -63,10 +65,28 @@ import { ref } from 'vue'
 
 const num = ref(1)
 const handleChange = (value: number) => {
-  console.log(value)
+  const tamp = listProducts.value.reduce((a, v) => ({ ...a, [v._id]: v }), {})
+
+  localStorage.setItem('cart', JSON.stringify(tamp))
+}
+
+const listProducts = ref([])
+onMounted(() => {
+  fetchProducts()
+})
+
+const fetchProducts = () => {
+  const storeCard = Object.values(
+    JSON.parse(localStorage.getItem('cart') || '{}'),
+  )
+
+  if (!storeCard.length) return
+
+  listProducts.value = storeCard
+
+  console.log(listProducts.value)
 }
 </script>
-
 <style lang="scss">
 @import '@/assets/css/components/Card/Product/card-product.scss';
 </style>
