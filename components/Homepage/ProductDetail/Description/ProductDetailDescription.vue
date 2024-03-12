@@ -27,11 +27,9 @@
       <button type="button">Xem Showroom còn hàng</button>
     </div>
     <div class="description__add-to-card">
-      <form>
-        <NuxtLink to="/cart">
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </NuxtLink>
-      </form>
+      <NuxtLink to="/cart">
+        <button @click="addToCart">Thêm vào giỏ hàng</button>
+      </NuxtLink>
     </div>
     <p class="description__contact">
       Có thanh toán:
@@ -76,6 +74,44 @@ const { descriptionData } = withDefaults(
   },
 )
 // console.log(descriptionData)
+
+const addToCart = () => {
+  if (!descriptionData) return
+
+  // Tìm kiếm trong giỏ hàng đã lưu trữ (localStorage) xem sản phẩm được thêm vào đã tồn tại hay chưa
+  const productExist = Object.keys(
+    JSON.parse(localStorage.getItem('cart') || '{}'),
+  ).find((item) => item === descriptionData._id)
+
+  // Nếu đã tồn tại số lượng sản phẩm sẽ tăng lên 1
+  if (productExist) {
+    const tamp1 = {
+      // lấy dữ liệu giỏ hàng hiện có từ localStorage
+      ...JSON.parse(localStorage.getItem('cart') || '{}'),
+      [descriptionData._id]: {
+        number:
+          JSON.parse(localStorage.getItem('cart') || '{}')[productExist]
+            .number + 1,
+        ...descriptionData,
+      },
+    }
+    // cập nhật lại thông tin giỏ hàng trong localStorage
+    localStorage.setItem('cart', JSON.stringify(tamp1))
+  } else {
+    const tamp = Object.assign(
+      // dữ liệu giỏ hàng hiện có từ localStorage
+      JSON.parse(localStorage.getItem('cart') || '{}'),
+      {
+        [descriptionData._id]: {
+          number: 1,
+          ...descriptionData,
+        },
+      },
+    )
+    // cập nhật lại thông tin giỏ hàng trong localStorage
+    localStorage.setItem('cart', JSON.stringify(tamp))
+  }
+}
 </script>
 
 <style lang="scss">

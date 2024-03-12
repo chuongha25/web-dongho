@@ -7,13 +7,13 @@
       <div
         class="product__item"
         v-for="productItem in props.products"
-        :key="productItem.id"
+        :key="productItem._id"
       >
         <div class="product__small">
           <div class="product__img">
             <NuxtLink
               :to="{
-                path: `/product/${props.category}/${productItem.branch}/${productItem.id}`,
+                path: `/product/${props.category}/${productItem.branch}/${productItem._id}`,
               }"
             >
               <img

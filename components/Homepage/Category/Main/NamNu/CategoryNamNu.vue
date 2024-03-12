@@ -42,12 +42,15 @@
 import type { Product } from '~/types/product'
 
 const route = useRoute()
-const category = route.params.category
+const category = route.params.category as string
 
 // const param = route.params
 // const { category } = param
 
-const categories = {
+const categories: Record<
+  string,
+  { title: string; image: string; description: string }
+> = {
   'dong-ho-nam': {
     title: 'Đồng hồ nam đẹp, thời trang, cao cấp chính hãng 100%, góp 0%',
     image:
@@ -64,7 +67,7 @@ const categories = {
   },
 }
 
-const categoriesTitle = {
+const categoriesTitle: Record<string, { title: string }> = {
   'dong-ho-nam': {
     title: 'Bộ sưu tập đồng hồ nam',
   },
