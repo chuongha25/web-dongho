@@ -1,72 +1,81 @@
 <template>
   <div class="cart-infor">
-    <form action="">
-      <!-- Table Total Price -->
-      <table>
-        <tfoot>
-          <tr class="cart-infor__subtotal">
-            <th>Tạm tính</th>
-            <td><span>4.518.000 ₫</span></td>
-          </tr>
-          <tr class="cart-infor__total">
-            <th>Tổng</th>
-            <td><strong>4.518.000 ₫</strong></td>
-          </tr>
-        </tfoot>
-      </table>
-      <!-- Information -->
-      <div class="cart-infor__form">
-        <div class="cart-infor__form__service">
-          <div class="service-customer">
-            <h3>
-              <el-icon><Document /></el-icon>
-              Thông tin khách hàng
-            </h3>
-            <div class="service-customer__input">
-              <div class="service-customer__input__item">
-                <el-input
-                  v-model="name"
-                  style="width: 50%"
-                  placeholder="Tên khách hàng"
-                />
-                <el-input
-                  v-model="phone"
-                  style="width: 50%"
-                  placeholder="Số điện thoại"
-                />
-              </div>
-              <el-input
-                v-model="email"
-                style="width: 100%"
-                placeholder="Email"
-              />
-            </div>
-          </div>
-          <div class="service-receive">
-            <h3>
-              <el-icon><LocationInformation /></el-icon>
-              Thông tin nhận hàng
-            </h3>
-            <p><span>Quốc gia: Việt Nam</span></p>
-            <div class="service-receive__adress">
-              <label for="">Địa chỉ *</label>
-              <el-input
-                v-model="adress"
-                style="width: 100%"
-                placeholder="Số nhà - Tên đường - Thường/Xã"
-              />
-            </div>
-            <div class="service-receive__city">
-              <label for="">Tỉnh/Thành phố *</label>
-              <el-input
-                v-model="city"
-                style="width: 100%"
-                placeholder="Tỉnh/Huyện/Thành phố"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Total Product Card -->
+    <table>
+      <tfoot>
+        <tr class="cart-infor__subtotal">
+          <th>Tạm tính</th>
+          <td>
+            <span>{{ formatPrice(props.total) }}</span>
+          </td>
+        </tr>
+        <tr class="cart-infor__total">
+          <th>Tổng</th>
+          <td>
+            <strong>{{ formatPrice(props.total) }}</strong>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <!-- Information -->
+    <el-form ref="formRef" :rules="rules" :model="form" label-position="top">
+      <h3>
+        <el-icon><Document /></el-icon>
+        Thông tin khách hàng
+      </h3>
+
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form-item prop="name">
+            <el-input
+              v-model="form.name"
+              type="text"
+              placeholder="Tên khách hàng"
+              class="mb-2"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item prop="phone">
+            <el-input
+              v-model="form.phone"
+              type="text"
+              placeholder="Số điện thoại"
+              class="mb-2"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-form-item prop="email">
+        <el-input
+          v-model="form.email"
+          type="text"
+          placeholder="Email"
+          class="mb-2"
+        />
+      </el-form-item>
+
+      <h3>
+        <el-icon><LocationInformation /></el-icon>
+        Thông tin nhận hàng
+      </h3>
+
+      <el-form-item label="Địa chỉ" prop="address">
+        <el-input
+          v-model="form.address"
+          type="text"
+          placeholder="Số nhà - Tên đường - Thường/Xã"
+        />
+      </el-form-item>
+      <el-form-item label="Tỉnh/Thành phố" prop="city">
+        <el-input
+          class="mb-3"
+          v-model="form.city"
+          type="text"
+          placeholder="Tỉnh/Huyện/Thành phố"
+        />
+      </el-form-item>
       <!-- Payment -->
       <div class="cart-infor__payment">
         <h3>
@@ -74,39 +83,33 @@
           Phương thức thanh toán
         </h3>
         <ul>
-          <li class="cart-infor__payment__item">
-            <div class="item-radio">
-              <input type="radio" />
-            </div>
-            <div class="item-des">
-              <h5>Chuyển khoản ngân hàng</h5>
-              <p>
-                Bạn ở HN và muốn tặng quà cho bạn mình ở HCM, bạn ở Huế và muốn
-                tặng quà bạn mình ở Đà Nẵng, bạn muốn bên trong quà tặng của bạn
-                có 1 tấm thiệp ghi những lời chúc của bạn tới người thân! Rất
-                đơn giản, chúng tôi có giải pháp cho bạn …
-              </p>
-            </div>
-          </li>
-          <li class="cart-infor__payment__item">
-            <div class="item-radio">
-              <input type="radio" />
-            </div>
-            <div class="item-des">
-              <h5>Thanh toán khi nhận hàng</h5>
-              <p>Thanh toán khi nhận hàng</p>
-            </div>
-          </li>
+          <el-form-item prop="select">
+            <el-radio-group v-model="form.select">
+              <li class="cart-infor__payment__item">
+                <el-radio :label="'banking'">Chuyển khoản ngân hàng</el-radio>
+                <div class="item-des">
+                  <p>
+                    Bạn ở HN và muốn tặng quà cho bạn mình ở HCM, bạn ở Huế và
+                    muốn tặng quà bạn mình ở Đà Nẵng, bạn muốn bên trong quà
+                    tặng của bạn có 1 tấm thiệp ghi những lời chúc của bạn tới
+                    người thân! Rất đơn giản, chúng tôi có giải pháp cho bạn …
+                  </p>
+                </div>
+              </li>
+              <li class="cart-infor__payment__item">
+                <el-radio :label="'cash'">Thanh toán khi nhận hàng</el-radio>
+                <div class="item-des">
+                  <p>Thanh toán khi nhận hàng</p>
+                </div>
+              </li>
+            </el-radio-group>
+          </el-form-item>
         </ul>
         <div class="cart-infor__payment__add">
-          <form action="">
-            <a href="#">
-              <button type="submit">Đặt hàng</button>
-            </a>
-          </form>
+          <el-button type="primary" @click="onSubmit">Đặt hàng</el-button>
         </div>
       </div>
-    </form>
+    </el-form>
   </div>
 </template>
 
@@ -117,11 +120,61 @@ import {
   CreditCard,
 } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-const name = ref('')
-const phone = ref('')
-const email = ref('')
-const adress = ref('')
-const city = ref('')
+import type { FormInstance, FormRules } from 'element-plus'
+
+const form = reactive({
+  name: '',
+  phone: '',
+  email: '',
+  address: '',
+  city: '',
+  select: '',
+})
+
+const formRef = ref<FormInstance>()
+
+const rules = reactive<FormRules<typeof form>>({
+  name: [{ required: true, message: 'Vui lòng nhập tên', trigger: 'change' }],
+  phone: [{ required: true, message: 'Vui long nhap ten', trigger: 'change' }],
+  email: [
+    { required: true, message: 'Vui long nhap ten', trigger: 'change' },
+    {
+      pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+      message: 'Please enter a valid email address',
+      trigger: 'change',
+    },
+  ],
+  address: [
+    { required: true, message: 'Vui long nhap ten', trigger: 'change' },
+  ],
+  city: [{ required: true, message: 'Vui long nhap ten', trigger: 'change' }],
+  select: [
+    {
+      required: true,
+      message: 'Vui lòng chọn trường thanh toán',
+      trigger: 'change',
+    },
+  ],
+})
+
+const onSubmit = () => {
+  if (!formRef.value) return
+
+  formRef.value.validate((valid) => {
+    if (!valid) return //validate false thi yêu cầu nhập lại đúng tông tin
+
+    // thực hiện action mua hàng
+  })
+}
+
+const props = withDefaults(
+  defineProps<{
+    total: number
+  }>(),
+  {
+    total: 0,
+  },
+)
 </script>
 
 <style lang="scss">
