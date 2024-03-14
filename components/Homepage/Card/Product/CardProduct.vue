@@ -152,7 +152,7 @@ const fetchProducts = () => {
 
   listProducts.value = storeCard as any
 
-  // console.log(listProducts.value)
+  console.log(listProducts.value)
 }
 </script>
 
