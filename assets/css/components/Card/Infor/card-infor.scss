@@ -1,7 +1,7 @@
 .cart-infor {
   table {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     tfoot {
       tr {
@@ -22,100 +22,21 @@
     }
   }
 
-  &__form {
-    padding-top: 15px;
+  .el-form {
+    h3 {
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      color: #676767;
+      font-size: 18px;
+      margin-bottom: 14px;
+      font-family: Roboto, sans-serif;
 
-    &__service {
-      .service-customer {
-        margin-bottom: 30px;
-        h3 {
-          font-weight: 600;
-          text-transform: none;
-          letter-spacing: 0.5px;
-          display: flex;
-          align-items: center;
-          color: #676767;
-          font-size: 18px;
-          margin-bottom: 10px;
-          font-family: Roboto, sans-serif;
-
-          .el-icon {
-            margin-right: 6px;
-            font-size: 20px;
-          }
-        }
-
-        &__input {
-          &__item {
-            display: flex;
-            justify-content: space-between;
-            margin: 0 -8px;
-
-            .el-input {
-              padding: 14px 8px;
-            }
-          }
-        }
-      }
-
-      .service-receive {
-        margin-bottom: 15px;
-
-        h3 {
-          font-weight: 600;
-          text-transform: none;
-          letter-spacing: 0.5px;
-          display: flex;
-          align-items: center;
-          color: #676767;
-          font-size: 18px;
-          margin-bottom: 14px;
-          font-family: Roboto, sans-serif;
-
-          .el-icon {
-            margin-right: 6px;
-            font-size: 20px;
-          }
-        }
-        p {
-          margin-bottom: 14px;
-          span {
-            font-size: 16px;
-            color: #222222;
-            font-weight: 550;
-            font-family: Roboto, sans-serif;
-          }
-        }
-
-        &__adress {
-          margin-bottom: 10px;
-
-          label {
-            font-size: 15px;
-            color: #222222;
-            font-weight: 550;
-            font-family: Roboto, sans-serif;
-          }
-
-          .el-input {
-            padding: 8px 0 15px 0;
-          }
-        }
-
-        &__city {
-          margin-bottom: 10px;
-
-          label {
-            font-size: 15px;
-            color: #222222;
-            font-weight: 550;
-            font-family: Roboto, sans-serif;
-          }
-
-          .el-input {
-            padding: 8px 0 15px 0;
-          }
-        }
+      .el-icon {
+        margin-right: 6px;
+        font-size: 20px;
       }
     }
   }
@@ -140,29 +61,47 @@
       }
     }
 
-    &__item {
-      display: flex;
-      background: #ededed;
-      margin-bottom: 12px;
-      border-radius: 12px;
-      padding: 16px;
+    ul {
+      .el-form-item {
+        margin-bottom: 0;
+        .el-radio-group {
+          display: flex;
+          flex-direction: column;
+          align-items: normal;
 
-      .item-radio {
-        width: 30px;
-        flex: none;
-      }
+          .cart-infor__payment__item {
+            display: flex;
+            flex-direction: column;
+            background: #ededed;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            padding: 22px;
+            flex: 1;
+            text-align: left;
 
-      .item-des {
-        h5 {
-          font-size: 17px;
-          color: #222222;
-          font-weight: 550;
-          font-family: Roboto, sans-serif;
-        }
+            .item-des {
+              padding-left: inherit;
 
-        p {
-          color: #676767;
-          font-size: 16px;
+              h5 {
+                font-size: 17px;
+                color: #222222;
+                font-weight: 550;
+                font-family: Roboto, sans-serif;
+              }
+
+              p {
+                color: #676767;
+                font-size: 16px;
+              }
+            }
+
+            .el-radio__label {
+              padding-left: 16px;
+              color: #222222;
+              font-size: 16px;
+              font-weight: 650;
+            }
+          }
         }
       }
     }
@@ -170,11 +109,10 @@
     &__add {
       button {
         width: 100%;
-        background: #9f1d27;
         border-radius: 12px;
-        font-weight: 400;
-        padding: 8px;
-        margin-top: 12px;
+        font-weight: 600;
+        padding: 18px;
+        margin-top: 20px;
         color: #fff;
         font-family: Roboto, sans-serif;
         font-size: 16px;

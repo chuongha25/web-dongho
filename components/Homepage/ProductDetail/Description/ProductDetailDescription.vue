@@ -78,39 +78,62 @@ const { descriptionData } = withDefaults(
 const addToCart = () => {
   if (!descriptionData) return
 
-  // Tìm kiếm trong giỏ hàng đã lưu trữ (localStorage) xem sản phẩm được thêm vào đã tồn tại hay chưa
+  // Lấy dữ liệu giỏ hàng từ localStorage
+  const cartData = JSON.parse(localStorage.getItem('cart') || '{}')
+
+  // Tìm kiếm trong giỏ hàng đã lưu trữ (thông qua localStorage) xem sản phẩm được thêm vào đã tồn tại hay chưa
   const productExist = Object.keys(
     JSON.parse(localStorage.getItem('cart') || '{}'),
   ).find((item) => item === descriptionData._id)
 
-  // Nếu đã tồn tại số lượng sản phẩm sẽ tăng lên 1
   if (productExist) {
-    const tamp1 = {
-      // lấy dữ liệu giỏ hàng hiện có từ localStorage
-      ...JSON.parse(localStorage.getItem('cart') || '{}'),
+    const updatedCart = {
+      ...cartData,
       [descriptionData._id]: {
-        number:
-          JSON.parse(localStorage.getItem('cart') || '{}')[productExist]
-            .number + 1,
+        quantity: cartData[productExist].quantity + 1,
         ...descriptionData,
       },
     }
-    // cập nhật lại thông tin giỏ hàng trong localStorage
-    localStorage.setItem('cart', JSON.stringify(tamp1))
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
   } else {
-    const tamp = Object.assign(
-      // dữ liệu giỏ hàng hiện có từ localStorage
-      JSON.parse(localStorage.getItem('cart') || '{}'),
-      {
-        [descriptionData._id]: {
-          number: 1,
-          ...descriptionData,
-        },
+    const updatedCart = {
+      ...cartData,
+      [descriptionData._id]: {
+        quantity: 1,
+        ...descriptionData,
       },
-    )
-    // cập nhật lại thông tin giỏ hàng trong localStorage
-    localStorage.setItem('cart', JSON.stringify(tamp))
+    }
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
   }
+
+  // Nếu đã tồn tại số lượng sản phẩm sẽ tăng lên 1
+  // if (productExist) {
+  //   const tamp1 = {
+  //     // lấy dữ liệu giỏ hàng hiện có từ localStorage
+  //     ...JSON.parse(localStorage.getItem('cart') || '{}'),
+  //     [descriptionData._id]: {
+  //       quantity:
+  //         JSON.parse(localStorage.getItem('cart') || '{}')[productExist]
+  //           .quantity + 1,
+  //       ...descriptionData,
+  //     },
+  //   }
+  //   // cập nhật lại thông tin giỏ hàng trong localStorage
+  //   localStorage.setItem('cart', JSON.stringify(tamp1))
+  // } else {
+  //   const tamp = Object.assign(
+  //     // dữ liệu giỏ hàng hiện có từ localStorage
+  //     JSON.parse(localStorage.getItem('cart') || '{}'),
+  //     {
+  //       [descriptionData._id]: {
+  //         quantity: 1,
+  //         ...descriptionData,
+  //       },
+  //     },
+  //   )
+  //   // cập nhật lại thông tin giỏ hàng trong localStorage
+  //   localStorage.setItem('cart', JSON.stringify(tamp))
+  // }
 }
 </script>
 
