@@ -8,6 +8,7 @@ dist
 
 data
 
+data/*
 # Node dependencies
 node_modules
 
