@@ -73,66 +73,42 @@ const { descriptionData } = withDefaults(
     descriptionData: null,
   },
 )
-// console.log(descriptionData)
+
+// khởi tạo store Pinia
+const cartStore = useCartStore()
 
 const addToCart = () => {
   if (!descriptionData) return
 
+  cartStore.addCart(descriptionData)
+
   // Lấy dữ liệu giỏ hàng từ localStorage
-  const cartData = JSON.parse(localStorage.getItem('cart') || '{}')
+  // const cartData = JSON.parse(localStorage.getItem('cart') || '{}')
 
-  // Tìm kiếm trong giỏ hàng đã lưu trữ (thông qua localStorage) xem sản phẩm được thêm vào đã tồn tại hay chưa
-  const productExist = Object.keys(
-    JSON.parse(localStorage.getItem('cart') || '{}'),
-  ).find((item) => item === descriptionData._id)
-
-  if (productExist) {
-    const updatedCart = {
-      ...cartData,
-      [descriptionData._id]: {
-        quantity: cartData[productExist].quantity + 1,
-        ...descriptionData,
-      },
-    }
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
-  } else {
-    const updatedCart = {
-      ...cartData,
-      [descriptionData._id]: {
-        quantity: 1,
-        ...descriptionData,
-      },
-    }
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
-  }
+  // // Tìm kiếm trong giỏ hàng đã lưu trữ (thông qua localStorage) xem sản phẩm được thêm vào đã tồn tại hay chưa
+  // const productExist = Object.keys(
+  //   JSON.parse(localStorage.getItem('cart') || '{}'),
+  // ).find((item) => item === descriptionData._id)
 
   // Nếu đã tồn tại số lượng sản phẩm sẽ tăng lên 1
   // if (productExist) {
-  //   const tamp1 = {
-  //     // lấy dữ liệu giỏ hàng hiện có từ localStorage
-  //     ...JSON.parse(localStorage.getItem('cart') || '{}'),
+  //   const updatedCart = {
+  //     ...cartData,
   //     [descriptionData._id]: {
-  //       quantity:
-  //         JSON.parse(localStorage.getItem('cart') || '{}')[productExist]
-  //           .quantity + 1,
+  //       quantity: cartData[productExist].quantity + 1,
   //       ...descriptionData,
   //     },
   //   }
-  //   // cập nhật lại thông tin giỏ hàng trong localStorage
-  //   localStorage.setItem('cart', JSON.stringify(tamp1))
+  //   localStorage.setItem('cart', JSON.stringify(updatedCart))
   // } else {
-  //   const tamp = Object.assign(
-  //     // dữ liệu giỏ hàng hiện có từ localStorage
-  //     JSON.parse(localStorage.getItem('cart') || '{}'),
-  //     {
-  //       [descriptionData._id]: {
-  //         quantity: 1,
-  //         ...descriptionData,
-  //       },
+  //   const updatedCart = {
+  //     ...cartData,
+  //     [descriptionData._id]: {
+  //       quantity: 1,
+  //       ...descriptionData,
   //     },
-  //   )
-  //   // cập nhật lại thông tin giỏ hàng trong localStorage
-  //   localStorage.setItem('cart', JSON.stringify(tamp))
+  //   }
+  //   localStorage.setItem('cart', JSON.stringify(updatedCart))
   // }
 }
 </script>

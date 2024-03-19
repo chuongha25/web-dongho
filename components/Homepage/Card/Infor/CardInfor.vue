@@ -6,13 +6,13 @@
         <tr class="cart-infor__subtotal">
           <th>Tạm tính</th>
           <td>
-            <span>{{ formatPrice(props.total) }}</span>
+            <span>{{ formatPrice(cartStore.totalPrice) }}</span>
           </td>
         </tr>
         <tr class="cart-infor__total">
           <th>Tổng</th>
           <td>
-            <strong>{{ formatPrice(props.total) }}</strong>
+            <strong>{{ formatPrice(cartStore.totalPrice) }}</strong>
           </td>
         </tr>
       </tfoot>
@@ -106,7 +106,9 @@
           </el-form-item>
         </ul>
         <div class="cart-infor__payment__add">
-          <el-button type="primary" @click="onSubmit">Đặt hàng</el-button>
+          <el-button type="primary" @click="onSubmit(formRef)"
+            >Đặt hàng</el-button
+          >
         </div>
       </div>
     </el-form>
@@ -114,6 +116,8 @@
 </template>
 
 <script setup lang="ts">
+import emailjs from '@emailjs/browser'
+
 import {
   Document,
   LocationInformation,
@@ -121,6 +125,8 @@ import {
 } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import type { Order } from '~/types/order'
+import { useRouter } from 'vue-router'
 
 const form = reactive({
   name: '',
@@ -135,9 +141,9 @@ const formRef = ref<FormInstance>()
 
 const rules = reactive<FormRules<typeof form>>({
   name: [{ required: true, message: 'Vui lòng nhập tên', trigger: 'change' }],
-  phone: [{ required: true, message: 'Vui long nhap ten', trigger: 'change' }],
+  phone: [{ required: true, message: 'Vui lòng nhập sđt', trigger: 'change' }],
   email: [
-    { required: true, message: 'Vui long nhap ten', trigger: 'change' },
+    { required: true, message: 'Vui lòng nhập email', trigger: 'change' },
     {
       pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
       message: 'Please enter a valid email address',
@@ -145,9 +151,11 @@ const rules = reactive<FormRules<typeof form>>({
     },
   ],
   address: [
-    { required: true, message: 'Vui long nhap ten', trigger: 'change' },
+    { required: true, message: 'Vui lòng nhập địa chỉ', trigger: 'change' },
   ],
-  city: [{ required: true, message: 'Vui long nhap ten', trigger: 'change' }],
+  city: [
+    { required: true, message: 'Vui lòng nhập thành phố', trigger: 'change' },
+  ],
   select: [
     {
       required: true,
@@ -157,24 +165,104 @@ const rules = reactive<FormRules<typeof form>>({
   ],
 })
 
-const onSubmit = () => {
+const router = useRouter()
+
+const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formRef.value) return
 
-  formRef.value.validate((valid) => {
-    if (!valid) return //validate false thi yêu cầu nhập lại đúng tông tin
+  formRef.value.validate(async (valid) => {
+    if (!valid) return
 
-    // thực hiện action mua hàng
+    // Kiểm tra giỏ hàng có sản phẩm không
+    if (Object.keys(cartStore.cart).length === 0) {
+      console.error('Giỏ hàng trống!')
+      return
+    }
+
+    // lấy hết dữ liệu trên form vào một biến
+    const dataOrder = {
+      products: Object.values(cartStore.cart).map((item) => ({
+        name: item.data.name,
+        quantity: item.quantity,
+        price: item.data.price * item.quantity,
+      })),
+      totalPrice: cartStore.totalPrice,
+      customer: form.name,
+      phone: form.phone,
+      email: form.email,
+      adress: form.address,
+      city: form.city,
+      payment: form.select,
+    }
+
+    try {
+      // Sử dụng useFetch để gửi yêu cầu POST đến endpoint api '/api/order' trên server với dữ liệu đơn hàng
+      const { data, error } = await useFetch('/api/oders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataOrder),
+      })
+
+      if (data) {
+        // Truy cập orderId từ data
+        const orderId = data?.value?.orderId
+        console.log('OrderId:', orderId)
+
+        if (!orderId) return
+        // Lưu orderId vào trạng thái của giỏ hàng
+        cartStore.setOrderId(orderId)
+
+        // Tạo template để gửi mail
+        const templateParams = {
+          mailTo: form.email,
+          customer: form.name,
+          products: dataOrder.products.map((item) => item.name).join('\n'),
+          totalPrice: formatPrice(cartStore.totalPrice),
+          date: new Date().toLocaleDateString(),
+        }
+        // Gửi email xác nhận đến email của người dùng
+        sendMail(templateParams)
+
+        // Chuyển hướng người dùng sau khi đặt hàng thành công đến trang đơn hàng với orderId
+        router.push({ path: `/cart/oder` })
+      } else if (error) {
+        console.error('Lỗi khi gửi yêu cầu đặt hàng:', error)
+      }
+
+      // Reset form
+      formRef?.value?.resetFields()
+
+      // Xóa dữ liệu sản phẩm khỏi cartStore hoặc gán lại dữ liệu mặc định
+      cartStore.cart = {}
+    } catch (error) {
+      console.error('Lỗi server khi call api không thành công:', error)
+    }
   })
 }
 
-const props = withDefaults(
-  defineProps<{
-    total: number
-  }>(),
-  {
-    total: 0,
+// Gọi trạng thái store
+const cartStore = useCartStore()
+
+// Lưu trữ tổng giá tiền
+const totalPrice = ref(cartStore.totalPrice)
+// Theo dõi sự thay đổi của totalPrice và render lại giao diện
+watch(
+  () => cartStore.totalPrice,
+  (newValue) => {
+    totalPrice.value = newValue
   },
 )
+
+// const props = withDefaults(
+//   defineProps<{
+//     total: number
+//   }>(),
+//   {
+//     total: 0,
+//   },
+// )
 </script>
 
 <style lang="scss">

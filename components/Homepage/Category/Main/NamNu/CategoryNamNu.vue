@@ -13,27 +13,21 @@
     <div class="category-products">
       <CategoryProductFilter />
       <CategoryProductList
-        v-if="category == 'dong-ho-nam'"
-        :products="props.data.donghonam"
-        category="dong-ho-nam"
-        :pageIdData="props.data.pageIdNam"
-      />
-      <CategoryProductList
-        v-if="category == 'dong-ho-nu'"
-        :products="props.data.donghonu"
+        :products="props.data"
         category="dong-ho-nu"
-        :pageIdData="props.data.pageIdNu"
+        :pageIdData="props.data"
       />
-      <HomepagePagination
-        v-if="category == 'dong-ho-nam'"
-        :products="props.data.donghonam"
-        category="dong-ho-nam"
-      />
-      <HomepagePagination
-        v-if="category == 'dong-ho-nu'"
-        :products="props.data.donghonu"
-        category="dong-ho-nu"
-      />
+      <!-- <HomepagePagination :products="props.data" category="dong-ho-nu" /> -->
+      <div class="flex justify-center mb-8">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :current-page="pagination.page"
+          :total="props.total || 20"
+          @current-change="handlePageChange"
+          :page-sizes="pagination.record"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -44,8 +38,19 @@ import type { Product } from '~/types/product'
 const route = useRoute()
 const category = route.params.category as string
 
-// const param = route.params
-// const { category } = param
+const emits = defineEmits<{
+  (e: 'change-page', val: any): void
+}>()
+
+const pagination = ref({
+  page: 1,
+  record: 12,
+})
+
+const handlePageChange = (page: number) => {
+  pagination.value.page = page
+  emits('change-page', pagination.value)
+}
 
 const categories: Record<
   string,
@@ -77,21 +82,13 @@ const categoriesTitle: Record<string, { title: string }> = {
 }
 
 type Props = {
-  data: {
-    donghonam?: Product[]
-    donghonu?: Product[]
-    pageIdNam?: Product[]
-    pageIdNu?: Product[]
-  }
+  data: Product[]
+  total: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  data: () => ({
-    donghonam: [],
-    donghonu: [],
-    pageIdNam: [],
-    pageIdNu: [],
-  }),
+  data: () => [],
+  total: 0,
 })
 </script>
 

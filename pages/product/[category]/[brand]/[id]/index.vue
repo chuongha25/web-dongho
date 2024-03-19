@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { useFetch } from 'nuxt/app'
 import { useRoute } from 'vue-router'
 import type { Product } from '~/types/product'
 

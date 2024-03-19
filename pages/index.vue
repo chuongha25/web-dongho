@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import { useFetch } from 'nuxt/app'
 import type { Product } from '~/types/product'
 definePageMeta({
   layout: 'custom',

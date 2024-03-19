@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  modules: ['@element-plus/nuxt'],
+  modules: ['@pinia/nuxt', '@element-plus/nuxt'],
   build: {
     extend(config, { isClient }) {
       // Thêm cấu hình cho dynamic import

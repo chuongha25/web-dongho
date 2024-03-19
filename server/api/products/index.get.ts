@@ -8,11 +8,17 @@ export default defineEventHandler(async (event) => {
 
     let products
 
-    if (query.category && query.pageId) {
+    if (query.category && query.page && query.record) {
       products = await ProductModel.find({
         category: query.category,
-        pageId: query.pageId,
       })
+
+      const total = products.length
+
+      products = products.slice(
+        (Number(query.page) - 1) * Number(query.record),
+        Number(query.page) * Number(query.record),
+      )
     } else if (query && (query.category || query.branch)) {
       // Định nghĩa một đối tượng chứa các điều kiện tìm kiếm
       const searchConditions: any = {}
