@@ -11,18 +11,18 @@
       </div>
       <div class="header-dashboard__section__profile">
         <el-dropdown trigger="click">
-          <span class="el-dropdown-link">
-            <span class="mr-2">Admin</span>
-            <el-avatar :icon="UserFilled" />
+          <span class="el-dropdown-link flex items-center">
+            <span class="mr-2">{{ userName }}</span>
+            <el-avatar :icon="UserFilled" :src="userAvatar" />
             <el-icon class="el-icon--right"><caret-bottom /></el-icon>
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item class="clearfix">
+              <el-dropdown-item class="clearfix" @click="toProfile">
                 Your Profile
                 <el-badge class="mark" />
               </el-dropdown-item>
-              <el-dropdown-item class="clearfix">
+              <el-dropdown-item class="clearfix" @click="onLogout">
                 Sign out
                 <el-badge class="mark" />
               </el-dropdown-item>
@@ -41,8 +41,23 @@ import {
   BellFilled,
   CaretBottom,
 } from '@element-plus/icons-vue'
-</script>
 
+const authStore = useAuthStore()
+
+const userName = computed(
+  () =>
+    `${authStore.user.profile?.firstName} ${authStore.user.profile?.lastName}`,
+)
+const userAvatar = computed(() => authStore.user.profile?.avatar)
+
+const onLogout = () => {
+  authStore.logout()
+}
+
+const toProfile = () => {
+  navigateTo('/admin/user-profile')
+}
+</script>
 <style lang="scss">
 @import '@/assets/css/pages/admin/dashboard/header/header.scss';
 </style>

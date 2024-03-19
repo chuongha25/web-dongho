@@ -50,7 +50,7 @@ interface ProductListEntity {
 
 const fetchData = async () => {
   const { page, record } = pagination.value
-  const { data } = await useFetch<ProductListEntity>('/api/products', {
+  const { data } = await useCustomFetch<ProductListEntity>('/api/products', {
     query: {
       // category: 'dong-ho-nu',
       // branch: 'casio',
