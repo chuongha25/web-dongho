@@ -106,9 +106,7 @@
           </el-form-item>
         </ul>
         <div class="cart-infor__payment__add">
-          <el-button type="primary" @click="onSubmit(formRef)"
-            >Đặt hàng</el-button
-          >
+          <el-button type="primary" @click="onSubmit">Đặt hàng</el-button>
         </div>
       </div>
     </el-form>
@@ -167,7 +165,7 @@ const rules = reactive<FormRules<typeof form>>({
 
 const router = useRouter()
 
-const onSubmit = async (formEl: FormInstance | undefined) => {
+const onSubmit = async () => {
   if (!formRef.value) return
 
   formRef.value.validate(async (valid) => {
@@ -180,7 +178,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     }
 
     // lấy hết dữ liệu trên form vào một biến
-    const dataOrder = {
+    const dataOrder: any = {
       products: Object.values(cartStore.cart).map((item) => ({
         name: item.data.name,
         quantity: item.quantity,
@@ -196,7 +194,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     }
 
     try {
-      // Sử dụng useFetch để gửi yêu cầu POST đến endpoint api '/api/order' trên server với dữ liệu đơn hàng
+      // Sử dụng useFetch để gửi yêu cầu POST đến endpoint api '/api/order' để thêm mới đơn hàng vào csdl
       const { data, error } = await useFetch('/api/oders', {
         method: 'POST',
         headers: {
@@ -218,14 +216,14 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
         const templateParams = {
           mailTo: form.email,
           customer: form.name,
-          products: dataOrder.products.map((item) => item.name).join('\n'),
+          products: dataOrder.products.map((item: any) => item.name).join('\n'),
           totalPrice: formatPrice(cartStore.totalPrice),
           date: new Date().toLocaleDateString(),
         }
         // Gửi email xác nhận đến email của người dùng
         sendMail(templateParams)
 
-        // Chuyển hướng người dùng sau khi đặt hàng thành công đến trang đơn hàng với orderId
+        // Chuyển hướng người dùng sau khi đặt hàng thành công đến trang đơn hàng
         router.push({ path: `/cart/oder` })
       } else if (error) {
         console.error('Lỗi khi gửi yêu cầu đặt hàng:', error)
@@ -237,7 +235,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
       // Xóa dữ liệu sản phẩm khỏi cartStore hoặc gán lại dữ liệu mặc định
       cartStore.cart = {}
     } catch (error) {
-      console.error('Lỗi server khi call api không thành công:', error)
+      console.error('Lỗi khi gửi yêu cầu đặt hàng:', error)
     }
   })
 }

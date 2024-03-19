@@ -19,11 +19,11 @@ const route = useRoute()
 // Lấy tất cả các tham số của đường dẫn hiện tại và gán chúng cho biến param
 // route.params chứa một đối tượng chứa tất cả các tham số trên URL
 const param = route.params
-console.log(param)
+// console.log(param)
 
 // Sử dụng cú pháp giải nén (destructuring) để trích xuất hai thuộc tính 'category' và 'brand' từ đối tượng param
 const { category, brand } = param
-console.log(category, brand)
+// console.log(category, brand)
 
 const categories: Record<string, string> = {
   'dong-ho-nam': 'Đồng hồ nam',

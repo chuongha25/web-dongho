@@ -31,11 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
 import { useCartStore } from '~/stores/cart'
-
-// const route = useRoute()
-// const id = route.params.id
 
 const cartStore = useCartStore()
 const orderId = cartStore.getOrderId

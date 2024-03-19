@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+import { useFetch } from 'nuxt/app'
 import type { Product } from '~/types/product'
 definePageMeta({
   layout: 'custom',
@@ -22,8 +23,4 @@ const { data: citizenData } = useFetch<Product[]>('/api/products', {
 const { data: orientData } = useFetch<Product[]>('/api/products', {
   query: { branch: 'orient' },
 })
-
-// console.log(casioData)
-// console.log(citizenData)
-// console.log(orientData)
 </script>

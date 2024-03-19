@@ -31,15 +31,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  head: {
-    // Thêm link tới Font Awesome CSS
-    link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-      },
-    ],
-  },
   nitro: {
     plugins: ['@/server/db/index.ts'],
   },

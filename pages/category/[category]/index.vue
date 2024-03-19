@@ -9,6 +9,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useFetch } from 'nuxt/app'
 import type { Product } from '@/types/product'
 definePageMeta({
   layout: 'custom',
