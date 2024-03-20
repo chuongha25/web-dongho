@@ -68,14 +68,10 @@
 
 <script setup lang="ts">
 import { Delete, ArrowRight } from '@element-plus/icons-vue'
-import { ref } from 'vue'
-// import type { Product } from '~/types/product'
 
 const cartStore = useCartStore()
 
 const carts = computed(() => Object.values(cartStore.cart))
-
-// const cartItems = Object.values(cartStore.cart)
 
 // const handleChange = (newValue: number, oldValue: number, item: Product) => {
 //   console.log(newValue, oldValue, item)

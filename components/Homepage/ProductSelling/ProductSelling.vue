@@ -6,14 +6,14 @@
     >
       <div
         class="product__item"
-        v-for="productItem in props.products"
+        v-for="productItem in listProducts"
         :key="productItem._id"
       >
         <div class="product__small">
           <div class="product__img">
             <NuxtLink
               :to="{
-                path: `/product/${props.category}/${productItem.branch}/${productItem._id}`,
+                path: `/product/${productItem.branch}/${productItem._id}`,
               }"
             >
               <img
@@ -46,18 +46,30 @@
 
 <script setup lang="ts">
 import type { Product } from '~/types/product'
+
 const props = withDefaults(
   defineProps<{
-    products: Product[]
-    title: string
     category: string
+    title: string
   }>(),
   {
-    products: () => [],
-    title: '',
     category: '',
+    title: '',
   },
 )
+
+const listProducts = ref<Product[]>([])
+
+interface ProductListEntity {
+  items: Product[]
+  total: number
+}
+
+const { data } = await useFetch<ProductListEntity>('/api/products', {
+  query: { category: props.category, page: 1, record: 8 },
+})
+
+listProducts.value = data?.value?.items || []
 </script>
 <style lang="scss">
 @import './assets/css/components/HomePage/ProductSelling/product-selling.scss';

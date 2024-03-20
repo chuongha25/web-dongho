@@ -1,32 +1,19 @@
 <template>
   <div class="main">
-    <HomepageMain
-      v-if="donhonamsellingData && donhonusellingData"
-      :data="{
-        donghonamselling: donhonamsellingData,
-        donghonuselling: donhonusellingData,
-      }"
-    />
+    <template v-if="categories && categories.length">
+      <HomepageMain :categories="categories" />
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useFetch } from 'nuxt/app'
-import type { Product } from '~/types/product'
+import type { Category } from '~/types/category'
 definePageMeta({
   layout: 'custom',
 })
 
-const { data: donhonamsellingData } = useFetch<Product[]>('/api/products', {
-  query: { category: 'dong-ho-nam-selling' },
-})
-
-const { data: donhonusellingData } = useFetch<Product[]>('/api/products', {
-  query: { category: 'dong-ho-nu-selling' },
-})
-
-// console.log(donhonamsellingData)
-// console.log(donhonusellingData)
+const { data: categories } = useFetch<Category[]>('/api/categories')
 
 // const { data: allProductsData } = useFetch('/api/products');
 // const donhonamsellingData = ref([]);
