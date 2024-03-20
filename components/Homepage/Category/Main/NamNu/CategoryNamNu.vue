@@ -12,18 +12,13 @@
     <Line />
     <div class="category-products">
       <CategoryProductFilter />
-      <CategoryProductList
-        :products="props.data"
-        category="dong-ho-nu"
-        :pageIdData="props.data"
-      />
-      <!-- <HomepagePagination :products="props.data" category="dong-ho-nu" /> -->
+      <CategoryProductList :products="props.data" :category="category" />
       <div class="flex justify-center mb-8">
         <el-pagination
           background
           layout="prev, pager, next"
           :current-page="pagination.page"
-          :total="props.total || 20"
+          :total="props.total"
           @current-change="handlePageChange"
           :page-sizes="pagination.record"
         />

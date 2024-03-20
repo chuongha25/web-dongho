@@ -123,7 +123,6 @@ import {
 } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
-import type { Order } from '~/types/order'
 import { useRouter } from 'vue-router'
 
 const form = reactive({
@@ -252,15 +251,6 @@ watch(
     totalPrice.value = newValue
   },
 )
-
-// const props = withDefaults(
-//   defineProps<{
-//     total: number
-//   }>(),
-//   {
-//     total: 0,
-//   },
-// )
 </script>
 
 <style lang="scss">

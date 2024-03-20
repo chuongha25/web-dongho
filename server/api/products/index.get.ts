@@ -19,6 +19,13 @@ export default defineEventHandler(async (event) => {
         (Number(query.page) - 1) * Number(query.record),
         Number(query.page) * Number(query.record),
       )
+
+      const data = {
+        items: products,
+        total,
+      }
+
+      return data
     } else if (query && (query.category || query.branch)) {
       // Định nghĩa một đối tượng chứa các điều kiện tìm kiếm
       const searchConditions: any = {}

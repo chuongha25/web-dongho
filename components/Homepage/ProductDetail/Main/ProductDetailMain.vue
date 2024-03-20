@@ -20,8 +20,6 @@ type Props = {
 const props = withDefaults(defineProps<Props>(), {
   data: undefined,
 })
-
-// console.log(props.data)
 </script>
 
 <style lang="scss">

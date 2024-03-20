@@ -12,19 +12,8 @@
     <Line />
     <div class="category-products">
       <CategoryProductFilter />
-      <CategoryProductList
-        v-if="brand == 'casio'"
-        :products="props.data.casio"
-      />
-      <CategoryProductList
-        v-if="brand == 'citizen'"
-        :products="props.data.citizen"
-      />
-      <CategoryProductList
-        v-if="brand == 'orient'"
-        :products="props.data.orient"
-      />
-      <!-- <HomepagePagination /> -->
+
+      <CategoryProductList :products="props.data" />
     </div>
   </div>
 </template>
@@ -32,7 +21,7 @@
 <script setup lang="ts">
 import type { Product } from '~/types/product'
 const route = useRoute()
-// const category = route.params.category
+
 const brand = route.params.brand as string
 
 const brands: Record<
@@ -75,22 +64,12 @@ const brandsTitle: Record<string, { title: string }> = {
 }
 
 type Props = {
-  data: {
-    casio?: Product[]
-    citizen?: Product[]
-    orient?: Product[]
-  }
+  data: Product[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  data: () => ({
-    casio: [],
-    citizen: [],
-    orient: [],
-  }),
+  data: () => [],
 })
-
-console.log(props.data)
 </script>
 
 <style lang="scss">

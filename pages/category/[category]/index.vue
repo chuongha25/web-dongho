@@ -1,8 +1,9 @@
 <template>
   <div class="main">
     <CategoryNamNu
-      v-if="listProducts.value"
-      :data="listProducts.value"
+      v-if="listProducts"
+      :data="listProducts"
+      :total="total"
       @change-page="fetchData"
     />
   </div>
@@ -22,17 +23,27 @@ const listProducts = ref<Product[]>([])
 const route = useRoute()
 const total = ref(0)
 
-const fetchData = (pagination: any = { page: 1, record: 12 }) => {
-  console.log(pagination)
-  const { data } = useFetch<Product[]>('/api/products', {
-    query: {
-      category: route.params.category,
-      page: pagination.page || 1,
-      record: pagination.record,
-    },
-  })
+interface ProductListEntity {
+  items: Product[]
+  total: number
+}
 
-  listProducts.value = data
+const fetchData = async (pagination: any = { page: 1, record: 12 }) => {
+  try {
+    const { data } = await useFetch<ProductListEntity>('/api/products', {
+      query: {
+        category: route.params.category,
+        page: pagination.page || 1,
+        record: pagination.record || 12,
+      },
+    })
+
+    listProducts.value = data?.value?.items || []
+
+    total.value = data?.value?.total || 0
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 fetchData()

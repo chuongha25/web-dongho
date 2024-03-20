@@ -1,9 +1,6 @@
 <template>
   <div class="brand">
-    <CategoryBrand
-      v-if="casioData && citizenData && orientData"
-      :data="{ casio: casioData, citizen: citizenData, orient: orientData }"
-    />
+    <CategoryBrand v-if="data" :data="data" />
   </div>
 </template>
 
@@ -14,13 +11,9 @@ definePageMeta({
   layout: 'custom',
 })
 
-const { data: casioData } = useFetch<Product[]>('/api/products', {
-  query: { branch: 'casio' },
-})
-const { data: citizenData } = useFetch<Product[]>('/api/products', {
-  query: { branch: 'citizen' },
-})
-const { data: orientData } = useFetch<Product[]>('/api/products', {
-  query: { branch: 'orient' },
+const route = useRoute()
+
+const { data } = await useFetch<Product[]>('/api/products', {
+  query: { branch: route.params.brand },
 })
 </script>
