@@ -52,7 +52,7 @@ const route = useRoute()
 const props = withDefaults(
   defineProps<{
     products?: Product[]
-    category: string
+    category?: string
   }>(),
   {
     products: () => [],

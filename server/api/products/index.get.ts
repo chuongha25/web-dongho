@@ -8,47 +8,35 @@ export default defineEventHandler(async (event) => {
 
     let products
 
-    if (query.category && query.page && query.record) {
-      products = await ProductModel.find({
+    if (query.category || query.branch) {
+      const params = {
         category: query.category,
-      })
+        branch: query.branch,
+      }
 
-      const total = products.length
+      !params.category && delete params.category
+      !params.branch && delete params.branch
 
+      products = await ProductModel.find(params)
+    } else {
+      products = await ProductModel.find()
+    }
+
+    const total = products.length
+
+    if (query.page && query.record) {
       products = products.slice(
         (Number(query.page) - 1) * Number(query.record),
         Number(query.page) * Number(query.record),
       )
-
-      const data = {
-        items: products,
-        total,
-      }
-
-      return data
-    } else if (query && (query.category || query.branch)) {
-      // Định nghĩa một đối tượng chứa các điều kiện tìm kiếm
-      const searchConditions: any = {}
-
-      // Nếu query.category được cung cấp, thêm điều kiện lọc theo category vào searchConditions
-      if (query.category) {
-        searchConditions.category = query.category
-      }
-
-      // Nếu query.branch được cung cấp, thêm điều kiện lọc theo branch vào searchConditions
-      if (query.branch) {
-        searchConditions.branch = query.branch
-      }
-
-      // Sử dụng searchConditions để lọc dữ liệu
-      products = await ProductModel.find(searchConditions)
-    } else {
-      // Nếu không có category hoặc branch được cung cấp, trả về tất cả sản phẩm
-      products = await ProductModel.find()
     }
 
-    // Trả về dữ liệu sản phẩm
-    return products
+    const data = {
+      items: products,
+      total,
+    }
+
+    return data
   } catch (error: any) {
     // Xử lý lỗi nếu có
     throw createError({

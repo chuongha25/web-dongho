@@ -1,6 +1,6 @@
 <template>
   <div class="brand">
-    <CategoryBrand v-if="data" :data="data" />
+    <CategoryBrand v-if="listProducts" :data="listProducts" />
   </div>
 </template>
 
@@ -13,7 +13,18 @@ definePageMeta({
 
 const route = useRoute()
 
-const { data } = await useFetch<Product[]>('/api/products', {
+const listProducts = ref<Product[]>([])
+
+interface ProductListEntity {
+  items: Product[]
+  total: number
+}
+
+const { data } = await useFetch<ProductListEntity>('/api/products', {
   query: { branch: route.params.brand },
 })
+
+listProducts.value = data?.value?.items || []
+
+// console.log(listProducts.value)
 </script>
