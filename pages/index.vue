@@ -9,6 +9,7 @@
 <script setup lang="ts">
 import { useFetch } from 'nuxt/app'
 import type { Category } from '~/types/category'
+
 definePageMeta({
   layout: 'custom',
 })
@@ -24,6 +25,4 @@ const { data: categories } = useFetch<Category[]>('/api/categories')
 // }
 </script>
 
-<style lang="scss">
-/* @import "@/assets/css/reset.scss"; */
-</style>
+<style lang="scss"></style>
