@@ -2,9 +2,9 @@
   <div class="container mx-auto">
     <div class="content">
       <div class="content__title">
-        <h1>Edit Product!</h1>
+        <h1>Create Product!</h1>
       </div>
-      <div class="flex flex-col items-center" v-if="form">
+      <div class="flex flex-col items-center">
         <el-image
           class="mb-4"
           style="width: 150px; height: 150px"
@@ -29,7 +29,7 @@
             :rules="{
               required: true,
               message: 'Vui lòng nhập url',
-              trigger: 'blur',
+              trigger: 'change',
             }"
           >
             <el-card class="w-full">
@@ -50,7 +50,7 @@
             </el-card>
           </el-form-item>
           <el-button class="mb-4 my-[10px]" @click="addImage"
-            >Add image</el-button
+            >Add Image</el-button
           >
           <el-form-item label="Name" prop="name">
             <el-input v-model="form.name" />
@@ -62,7 +62,12 @@
             label="Category"
             v-for="(item, index) in form.category"
             :key="index"
-            prop="category"
+            :prop="'category.' + index"
+            :rules="{
+              required: true,
+              message: 'Vui lòng nhập category',
+              trigger: 'change',
+            }"
           >
             <el-card class="flex justify-between w-full">
               <el-input
@@ -83,7 +88,7 @@
         </el-form>
 
         <el-button style="width: 100px" type="primary" @click="onUpdate"
-          >Update</el-button
+          >Create</el-button
         >
       </div>
     </div>
@@ -94,8 +99,17 @@
 import type { Product } from '@/types/product'
 import type { FormInstance, FormRules } from 'element-plus'
 
-const route = useRoute()
-const form = ref<Product>()
+const form = reactive({
+  imagesDetail: {
+    imageLarge: '',
+    thumbnailImages: [''],
+  },
+  name: '',
+  branch: '',
+  category: [''],
+  description: '',
+  price: '',
+})
 
 const formRef = ref<FormInstance>()
 
@@ -118,32 +132,20 @@ const rules = reactive<FormRules<typeof form>>({
   ],
 })
 
-const rulesThumbnail = (rule: any, value: any, callback: any) => {
-  if (!value) callback(new Error('Please input the password'))
-
-  callback()
-}
-
-const { data } = await useFetch<Product>(`/api/products/${route.params?.id}`)
-
-if (data.value !== null) {
-  form.value = data.value
-}
-
 const addImage = () => {
-  form.value?.imagesDetail.thumbnailImages.push('')
+  form.imagesDetail.thumbnailImages.push('')
 }
 
 const deleteImage = (index: number) => {
-  form.value?.imagesDetail.thumbnailImages.splice(index, 1)
+  form.imagesDetail.thumbnailImages.splice(index, 1)
 }
 
 const addCategory = () => {
-  form.value?.category.push('')
+  form.category.push('')
 }
 
 const deleteCategory = (index: number) => {
-  form.value?.category.splice(index, 1)
+  form.category.splice(index, 1)
 }
 
 const onUpdate = async () => {
@@ -152,17 +154,17 @@ const onUpdate = async () => {
   formRef.value.validate(async (vaild) => {
     if (!vaild) return
 
-    await fetch(`/api/products/${route.params?.id}`, {
-      method: 'PUT',
+    await fetch('/api/products', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(form.value),
+      body: JSON.stringify(form),
     })
   })
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/css/pages/admin/products/edit/edit.scss';
+@import '@/assets/css/pages/admin/products/create/create.scss';
 </style>

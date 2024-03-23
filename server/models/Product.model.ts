@@ -21,15 +21,12 @@ const schema: mongoose.Schema = new mongoose.Schema(
     },
     images: {
       type: [String],
-      required: true,
     },
     logoBrand: {
       type: String,
-      required: true,
     },
     productCode: {
       type: String,
-      required: true,
     },
     description: {
       type: String,
@@ -47,7 +44,6 @@ const schema: mongoose.Schema = new mongoose.Schema(
     },
     pageId: {
       type: Number,
-      required: true,
     },
   },
   { timestamps: true },
