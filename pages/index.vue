@@ -24,5 +24,3 @@ const { data: categories } = useFetch<Category[]>('/api/categories')
 //   donhonusellingData.value = allProductsData.value.filter(product => product.category === 'dong-ho-nu-selling');
 // }
 </script>
-
-<style lang="scss"></style>

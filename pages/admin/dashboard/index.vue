@@ -174,8 +174,8 @@ definePageMeta({
 })
 </script>
 
-<style lang="scss">
+<!-- <style lang="scss">
 .dashboard-content {
   // padding: 20px 60px;
 }
-</style>
+</style> -->
