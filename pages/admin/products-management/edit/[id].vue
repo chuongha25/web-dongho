@@ -1,4 +1,5 @@
 <template>
+  <el-page-header @back="goBack" />
   <div class="container mx-auto">
     <div class="content">
       <div class="content__title">
@@ -91,6 +92,9 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layout: 'dashboard',
+})
 import type { Product } from '@/types/product'
 import type { FormInstance, FormRules } from 'element-plus'
 
@@ -160,6 +164,10 @@ const onUpdate = async () => {
       body: JSON.stringify(form.value),
     })
   })
+}
+
+const goBack = () => {
+  navigateTo('/admin/products-management')
 }
 </script>
 

@@ -4,7 +4,7 @@
       active-text-color="#ffd04b"
       background-color="#545c64"
       class="el-menu-vertical-demo h-screen"
-      default-active="1"
+      :default-active="activeMenuItem"
       text-color="#fff"
     >
       <!-- Sidebar Profile -->
@@ -35,23 +35,23 @@
       </div>
 
       <!-- Sidebar menu -->
-      <el-menu-item index="1">
+      <el-menu-item @click="handleClick(1)" index="1">
         <el-icon><HomeFilled /></el-icon>
         <span>Dashboard</span>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item @click="handleClick(2)" index="2">
         <el-icon><UserFilled /></el-icon>
         <span>About</span>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item @click="handleClick(3)" index="3">
         <el-icon><GoodsFilled /></el-icon>
         <span>Products</span>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item @click="handleClick(4)" index="4">
         <el-icon><List /></el-icon>
         <span>Order</span>
       </el-menu-item>
-      <el-menu-item index="5">
+      <el-menu-item @click="handleClick(5)" index="5">
         <el-icon><Histogram /></el-icon>
         <span>Reports</span>
       </el-menu-item>
@@ -81,6 +81,60 @@ import {
   Histogram,
   Setting,
 } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const activeMenuItem = ref('')
+
+watch(
+  () => router.currentRoute.value.path,
+  (newPath) => {
+    switch (newPath) {
+      case '/admin/dashboard':
+        activeMenuItem.value = '1'
+        break
+      case '/admin/about':
+        activeMenuItem.value = '2'
+        break
+      case '/admin/products-management':
+        activeMenuItem.value = '3'
+        break
+      case '/admin/orders-management':
+        activeMenuItem.value = '4'
+        break
+      case '/admin/reports-management':
+        activeMenuItem.value = '5'
+        break
+      default:
+        break
+    }
+  },
+)
+
+const handleClick = (index: any) => {
+  activeMenuItem.value = String(index)
+
+  // Thực hiện điều hướng tới trang tương ứng
+  switch (index) {
+    case 1:
+      router.push('/admin/dashboard')
+      break
+    case 2:
+      router.push('/admin/about')
+      break
+    case 3:
+      router.push('/admin/products-management')
+      break
+    case 4:
+      router.push('/admin/orders-management')
+      break
+    case 5:
+      router.push('/admin/reports-management')
+      break
+    default:
+      break
+  }
+}
 </script>
 
 <style lang="scss">

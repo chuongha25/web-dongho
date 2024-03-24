@@ -8,11 +8,11 @@
     </div>
     <el-table :data="listProducts" style="width: 100%">
       <el-table-column prop="_id" label="Id" width="180" />
-      <el-table-column prop="name" label="Name" width="240" />
-      <el-table-column prop="category" label="Category" />
-      <el-table-column prop="price" label="Price" />
-      <el-table-column prop="branch" label="Branch" />
-      <el-table-column prop="operation" label="Operation">
+      <el-table-column prop="name" label="Name" width="270" />
+      <el-table-column prop="category" label="Category" width="190" />
+      <el-table-column prop="price" label="Price" width="130" />
+      <el-table-column prop="branch" label="Branch" width="130" />
+      <el-table-column prop="operation" label="Operation" width="170">
         <template v-slot="{ row }">
           <el-button type="primary" @click="toEdit(row._id)">Edit</el-button>
           <el-button type="primary" @click="toDelete(row._id)"
@@ -21,6 +21,16 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="flex justify-center mt-3.5">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :current-page="pagination.page"
+        :page-size="pagination.record"
+        :total="total"
+        @current-change="handlePageChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -31,6 +41,7 @@ definePageMeta({
 })
 
 const listProducts = ref<Product[]>([])
+const total = ref(0)
 
 interface ProductListEntity {
   items: Product[]
@@ -38,14 +49,29 @@ interface ProductListEntity {
 }
 
 const fetchData = async () => {
+  const { page, record } = pagination.value
   const { data } = await useFetch<ProductListEntity>('/api/products', {
     query: {
-      category: 'dong-ho-nu',
-      branch: 'casio',
+      // category: 'dong-ho-nu',
+      // branch: 'casio',
+      page: page,
+      record: record,
     },
   })
 
   listProducts.value = data.value?.items || []
+
+  total.value = data.value?.total || 0
+}
+
+const pagination = ref({
+  page: 1,
+  record: 10,
+})
+
+const handlePageChange = async (page: number) => {
+  pagination.value.page = page
+  await fetchData()
 }
 
 fetchData()
@@ -62,16 +88,9 @@ const toDelete = async (id: string) => {
   await fetch(`/api/products/${id}`, {
     method: 'DELETE',
   })
+  // Cập nhật lại dữ liệu
+  fetchData()
 }
-
-watch(
-  () => listProducts.value,
-  async (newVal) => {
-    console.log('Danh sách sản phẩm đã thay đổi:', newVal)
-    // Gọi lại fetchData() để cập nhật danh sách sản phẩm từ API mỗi khi có sự thay đổi
-    await fetchData()
-  },
-)
 </script>
 
 <style lang="scss">

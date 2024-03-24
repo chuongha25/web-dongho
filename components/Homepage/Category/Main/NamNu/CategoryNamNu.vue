@@ -20,7 +20,7 @@
           :current-page="pagination.page"
           :total="props.total"
           @current-change="handlePageChange"
-          :page-sizes="pagination.record"
+          :page-size="pagination.record"
         />
       </div>
     </div>
