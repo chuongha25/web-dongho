@@ -26,6 +26,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import './assets/css/components/HomePage/Main/main.scss';
 </style>

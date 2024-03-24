@@ -132,6 +132,7 @@ const form = reactive({
   address: '',
   city: '',
   select: '',
+  status: 'DAT_HANG',
 })
 
 const formRef = ref<FormInstance>()
@@ -190,6 +191,7 @@ const onSubmit = async () => {
       adress: form.address,
       city: form.city,
       payment: form.select,
+      status: form.status,
     }
 
     try {

@@ -2,6 +2,7 @@
   margin-left: 300px;
   margin-top: 60px;
   flex-grow: 1;
+  width: calc(100% - 300px);
 
   &__content {
     padding: 20px 60px;

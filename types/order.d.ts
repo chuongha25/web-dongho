@@ -8,6 +8,7 @@ export type Order = {
   adress: string
   city: string
   payment: string
+  status: string
 }
 
 interface Product {
