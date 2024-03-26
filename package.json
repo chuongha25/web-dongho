@@ -21,7 +21,10 @@
     "@emailjs/browser": "^4.3.3",
     "@headlessui/vue": "^1.7.19",
     "@heroicons/vue": "^2.1.1",
+    "@nuxtjs/dayjs": "^1.4.1",
     "@pinia/nuxt": "^0.5.1",
+    "chart.js": "^4.4.2",
+    "dayjs": "^1.11.10",
     "element-plus": "^2.5.6",
     "joi": "^17.12.2",
     "nodemailer": "^6.9.12",
@@ -29,6 +32,7 @@
     "nuxt-mail": "^4.0.3",
     "pinia": "^2.1.7",
     "vue": "^3.4.19",
+    "vue-chartjs": "^5.3.0",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

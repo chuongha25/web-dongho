@@ -9,6 +9,7 @@ export type Order = {
   city: string
   payment: string
   status: string
+  createdAt: Date
 }
 
 interface Product {

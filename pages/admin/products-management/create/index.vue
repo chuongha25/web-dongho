@@ -88,7 +88,11 @@
           </el-form-item>
         </el-form>
 
-        <el-button style="width: 100px" type="primary" @click="onUpdate"
+        <el-button
+          style="width: 100px"
+          type="primary"
+          :plain="true"
+          @click="onCreate"
           >Create</el-button
         >
       </div>
@@ -102,6 +106,7 @@ definePageMeta({
 })
 
 import type { Product } from '@/types/product'
+import { ElNotification } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 
 const form = reactive({
@@ -153,7 +158,7 @@ const deleteCategory = (index: number) => {
   form.category.splice(index, 1)
 }
 
-const onUpdate = async () => {
+const onCreate = async () => {
   if (!formRef.value) return
 
   formRef.value.validate(async (vaild) => {
@@ -165,6 +170,15 @@ const onUpdate = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(form),
+    })
+
+    // Reset Form
+    formRef.value?.resetFields()
+
+    ElNotification({
+      title: 'Success',
+      message: 'You have successfully created the product',
+      type: 'success',
     })
   })
 }

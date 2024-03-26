@@ -22,9 +22,11 @@
         <div class="header__card">
           <div class="header__card__scoped">
             <NuxtLink to="/cart">
-              <el-icon>
-                <ShoppingCart />
-              </el-icon>
+              <el-badge :value="badge" class="mt-2.5 mr-10">
+                <el-icon>
+                  <ShoppingCart />
+                </el-icon>
+              </el-badge>
             </NuxtLink>
           </div>
         </div>
@@ -90,6 +92,18 @@ const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
+const cartStore = useCartStore()
+const badge = ref()
+
+watch(badge, (newValue, oldValue) => {
+  console.log('Giá trị mới của badge:', newValue)
+})
+
+watch(
+  () => Object.keys(cartStore.cart).length,
+  () => (badge.value = Object.keys(cartStore.cart).length),
+)
 </script>
 
 <style lang="scss">

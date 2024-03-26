@@ -1,170 +1,6 @@
 <template>
   <div class="dashboard-home">
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-      dolore, officia quos consequuntur sed totam amet ex asperiores magni a,
-      corporis illum vel esse! Esse et repellat eaque adipisci saepe.
-    </p>
+    <Line id="my-chart-id" :data="chartData" :options="chartOptions" />
   </div>
 </template>
 
@@ -172,10 +8,82 @@
 definePageMeta({
   layout: 'dashboard',
 })
-</script>
 
-<!-- <style lang="scss">
-.dashboard-content {
-  // padding: 20px 60px;
+import { Line } from 'vue-chartjs'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  LineElement,
+} from 'chart.js'
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  LineElement,
+)
+
+const chartData = ref({
+  labels: [
+    'Tháng 1',
+    'Tháng 2',
+    'Tháng 3',
+    'Tháng 4',
+    'Tháng 5',
+    'Tháng 6',
+    'Tháng 7',
+    'Tháng 8',
+    'Tháng 9',
+    'Tháng 10',
+    'Tháng 11',
+    'Tháng 12',
+  ],
+  datasets: [
+    {
+      label: 'Số lượng truy cập',
+      data: [500, 700, 900, 1200, 1000, 1500, 1300, 1100, 950, 800, 600, 400],
+      borderColor: 'rgb(54, 162, 235)',
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderWidth: 3,
+      pointRadius: 6,
+      pointBackgroundColor: 'white',
+      pointBorderColor: 'rgb(54, 162, 235)',
+      pointBorderWidth: 2,
+      fill: true,
+    },
+  ],
+})
+
+const chartOptions = {
+  responsive: true,
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      ticks: {
+        color: 'rgba(0, 0, 0, 0.6)',
+      },
+    },
+    y: {
+      grid: {
+        color: 'rgba(0, 0, 0, 0.1)',
+      },
+      ticks: {
+        color: 'rgba(0, 0, 0, 0.6)',
+        stepSize: 600,
+      },
+    },
+  },
 }
-</style> -->
+
+const chartRef = 'myChart'
+</script>

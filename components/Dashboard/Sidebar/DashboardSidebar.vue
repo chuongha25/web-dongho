@@ -40,20 +40,20 @@
         <span>Dashboard</span>
       </el-menu-item>
       <el-menu-item @click="handleClick(2)" index="2">
-        <el-icon><UserFilled /></el-icon>
-        <span>About</span>
-      </el-menu-item>
-      <el-menu-item @click="handleClick(3)" index="3">
         <el-icon><GoodsFilled /></el-icon>
         <span>Products</span>
       </el-menu-item>
-      <el-menu-item @click="handleClick(4)" index="4">
+      <el-menu-item @click="handleClick(3)" index="3">
         <el-icon><List /></el-icon>
         <span>Order</span>
       </el-menu-item>
-      <el-menu-item @click="handleClick(5)" index="5">
+      <el-menu-item @click="handleClick(4)" index="4">
         <el-icon><Histogram /></el-icon>
         <span>Reports</span>
+      </el-menu-item>
+      <el-menu-item @click="handleClick(5)" index="5">
+        <el-icon><UserFilled /></el-icon>
+        <span>About</span>
       </el-menu-item>
 
       <!-- Sidebar Setting -->
@@ -84,35 +84,47 @@ import {
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const activeMenuItem = ref('')
+const activeMenuItem = ref('1')
+
+onMounted(() => {
+  // Lấy dữ liệu từ localStorage khi ứng dụng đã được khởi tạo
+  const savedActiveMenuItem = localStorage.getItem('activeMenuItem')
+  if (savedActiveMenuItem) {
+    activeMenuItem.value = savedActiveMenuItem
+  }
+})
 
 watch(
-  () => router.currentRoute.value.path,
-  (newPath) => {
-    switch (newPath) {
-      case '/admin/dashboard':
-        activeMenuItem.value = '1'
-        break
-      case '/admin/about':
-        activeMenuItem.value = '2'
-        break
-      case '/admin/products-management':
-        activeMenuItem.value = '3'
-        break
-      case '/admin/orders-management':
-        activeMenuItem.value = '4'
-        break
-      case '/admin/reports-management':
-        activeMenuItem.value = '5'
-        break
-      default:
-        break
+  () => router.currentRoute.value && router.currentRoute.value.path,
+  (newPath, oldPath) => {
+    if (newPath !== oldPath) {
+      switch (newPath) {
+        case '/admin/dashboard':
+          activeMenuItem.value = '1'
+          break
+        case '/admin/products-management':
+          activeMenuItem.value = '2'
+          break
+        case '/admin/orders-management':
+          activeMenuItem.value = '3'
+          break
+        case '/admin/reports-management':
+          activeMenuItem.value = '4'
+          break
+        case '/admin/about':
+          activeMenuItem.value = '5'
+          break
+        default:
+          break
+      }
+      localStorage.setItem('activeMenuItem', activeMenuItem.value)
     }
   },
 )
 
 const handleClick = (index: any) => {
   activeMenuItem.value = String(index)
+  localStorage.setItem('activeMenuItem', activeMenuItem.value)
 
   // Thực hiện điều hướng tới trang tương ứng
   switch (index) {
@@ -120,16 +132,16 @@ const handleClick = (index: any) => {
       router.push('/admin/dashboard')
       break
     case 2:
-      router.push('/admin/about')
-      break
-    case 3:
       router.push('/admin/products-management')
       break
-    case 4:
+    case 3:
       router.push('/admin/orders-management')
       break
-    case 5:
+    case 4:
       router.push('/admin/reports-management')
+      break
+    case 5:
+      router.push('/admin/about')
       break
     default:
       break

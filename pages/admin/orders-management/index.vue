@@ -84,7 +84,7 @@ const fetchData = async () => {
 
 const pagination = ref({
   page: 1,
-  record: 3,
+  record: 7,
 })
 
 const handlePageChange = async (page: number) => {
