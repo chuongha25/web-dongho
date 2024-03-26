@@ -83,7 +83,11 @@
           </el-form-item>
         </el-form>
 
-        <el-button style="width: 100px" type="primary" @click="onUpdate"
+        <el-button
+          style="width: 100px"
+          type="primary"
+          :plain="true"
+          @click="onUpdate"
           >Update</el-button
         >
       </div>
@@ -96,6 +100,7 @@ definePageMeta({
   layout: 'dashboard',
 })
 import type { Product } from '@/types/product'
+import { ElNotification } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 
 const route = useRoute()
@@ -162,6 +167,12 @@ const onUpdate = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(form.value),
+    })
+
+    ElNotification({
+      title: 'Success',
+      message: 'You have successfully updated the product',
+      type: 'success',
     })
   })
 }

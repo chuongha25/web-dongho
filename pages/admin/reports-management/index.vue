@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Reports Mangement!</h1>
+    <DashboardReport />
   </div>
 </template>
 
