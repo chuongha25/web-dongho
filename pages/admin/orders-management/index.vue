@@ -71,7 +71,7 @@ interface ProductListEntity {
 
 const fetchData = async () => {
   const { page, record } = pagination.value
-  const { data } = await useFetch<ProductListEntity>('/api/oders', {
+  const { data } = await useCustomFetch<ProductListEntity>('/api/oders', {
     query: {
       page: page,
       record: record,

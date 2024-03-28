@@ -35,7 +35,6 @@ import { useCartStore } from '~/stores/cart'
 
 const cartStore = useCartStore()
 const orderId = cartStore.getOrderId
-console.log('OrderId:', orderId)
 </script>
 
 <style lang="scss">
