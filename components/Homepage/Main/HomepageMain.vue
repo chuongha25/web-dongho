@@ -4,7 +4,7 @@
     <HomepageAlbums title="Bộ sưu tập nổi bật" />
 
     <ProductSelling
-      v-for="item in props.categories"
+      v-for="item in props.categorySelling"
       :category="item.name"
       :title="item.description"
     />
@@ -19,10 +19,10 @@
 import type { Category } from '~/types/category'
 
 type Props = {
-  categories: Category[]
+  categorySelling: Category[]
 }
 const props = withDefaults(defineProps<Props>(), {
-  categories: () => [],
+  categorySelling: () => [],
 })
 </script>
 

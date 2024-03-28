@@ -1,6 +1,6 @@
-// GET /api/oders -> Get oder
+// GET /api/categories -> Get category
 
-import OrderModel from '~/server/models/Order.model'
+import CategoryModel from '~/server/models/Category.model'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -9,12 +9,12 @@ export default defineEventHandler(async (event) => {
     // Kiểm tra xem id có tồn tại không
     if (id) {
       // Tìm kiếm đơn hàng dựa trên id trong cơ sở dữ liệu MongoDB
-      const oder = await OrderModel.findById(id)
+      const category = await CategoryModel.findById(id)
 
       // Kiểm tra xem đơn hàng có tồn tại không
-      if (oder) {
+      if (category) {
         // Nếu đơn hàng tồn tại, trả về dữ liệu đơn hàng
-        return oder
+        return category
       } else {
         // Nếu đơn hàng không tồn tại, trả về lỗi 404
         throw createError({

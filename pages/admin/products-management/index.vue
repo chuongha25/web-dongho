@@ -35,10 +35,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { Product } from '@/types/product'
 definePageMeta({
   layout: 'dashboard',
 })
+import type { Product } from '@/types/product'
+import { ElNotification } from 'element-plus'
+import { formatPrice } from '~/utils'
 
 const listProducts = ref<Product[]>([])
 const total = ref(0)
@@ -52,8 +54,6 @@ const fetchData = async () => {
   const { page, record } = pagination.value
   const { data } = await useFetch<ProductListEntity>('/api/products', {
     query: {
-      // category: 'dong-ho-nu',
-      // branch: 'casio',
       page: page,
       record: record,
     },
@@ -90,6 +90,12 @@ const toDelete = async (id: string) => {
   })
   // Cập nhật lại dữ liệu
   fetchData()
+
+  ElNotification({
+    title: 'Success',
+    message: 'You have successfully delete the product',
+    type: 'success',
+  })
 }
 </script>
 

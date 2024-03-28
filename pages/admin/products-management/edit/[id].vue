@@ -59,7 +59,7 @@
           <el-form-item label="Branch" prop="branch">
             <el-input v-model="form.branch" />
           </el-form-item>
-          <el-form-item
+          <!-- <el-form-item
             label="Category"
             v-for="(item, index) in form.category"
             :key="index"
@@ -73,8 +73,19 @@
               />
               <el-button @click="deleteCategory(index)">Delete</el-button>
             </el-card>
+          </el-form-item> -->
+          <!-- <el-button class="mb-4" @click="addCategory">Add Category</el-button> -->
+          <el-form-item label="Category" prop="category">
+            <el-checkbox-group v-model="form.category" size="large">
+              <el-checkbox
+                v-for="(item, index) in listCategories"
+                :key="index"
+                :value="item.name"
+                :label="item.name"
+                size="large"
+              />
+            </el-checkbox-group>
           </el-form-item>
-          <el-button class="mb-4" @click="addCategory">Add Category</el-button>
           <el-form-item label="Description" prop="description">
             <el-input v-model="form.description" />
           </el-form-item>
@@ -83,11 +94,7 @@
           </el-form-item>
         </el-form>
 
-        <el-button
-          style="width: 100px"
-          type="primary"
-          :plain="true"
-          @click="onUpdate"
+        <el-button style="width: 100px" type="primary" @click="onUpdate"
           >Update</el-button
         >
       </div>
@@ -105,6 +112,10 @@ import type { FormInstance, FormRules } from 'element-plus'
 
 const route = useRoute()
 const form = ref<Product>()
+
+const handleChange = (index) => {
+  form.value.category[index] = !form.value.category[index]
+}
 
 const formRef = ref<FormInstance>()
 
@@ -147,14 +158,6 @@ const deleteImage = (index: number) => {
   form.value?.imagesDetail.thumbnailImages.splice(index, 1)
 }
 
-const addCategory = () => {
-  form.value?.category.push('')
-}
-
-const deleteCategory = (index: number) => {
-  form.value?.category.splice(index, 1)
-}
-
 const onUpdate = async () => {
   if (!formRef.value) return
 
@@ -174,12 +177,16 @@ const onUpdate = async () => {
       message: 'You have successfully updated the product',
       type: 'success',
     })
+
+    navigateTo('/admin/products-management')
   })
 }
 
 const goBack = () => {
   navigateTo('/admin/products-management')
 }
+
+const { data: listCategories } = await useFetch('/api/categories')
 </script>
 
 <style lang="scss" scoped>
