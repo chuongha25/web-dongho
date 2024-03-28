@@ -25,6 +25,4 @@ const { data } = await useFetch<ProductListEntity>('/api/products', {
 })
 
 listProducts.value = data?.value?.items || []
-
-// console.log(listProducts.value)
 </script>

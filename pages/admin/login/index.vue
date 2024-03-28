@@ -1,90 +1,76 @@
 <template>
-  <div
-    class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
-  >
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img
-        class="mx-auto h-10 w-auto"
-        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-        alt="Your Company"
-      />
-      <h2
-        class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
-      >
-        Sign in to your account
-      </h2>
-    </div>
-
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
-        <div>
-          <label
-            for="email"
-            class="block text-sm font-medium leading-6 text-gray-900"
-            >Email address</label
-          >
-          <div class="mt-2">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required=""
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div>
-          <div class="flex items-center justify-between">
-            <label
-              for="password"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Password</label
-            >
-            <div class="text-sm">
-              <a
-                href="#"
-                class="font-semibold text-indigo-600 hover:text-indigo-500"
-                >Forgot password?</a
-              >
-            </div>
-          </div>
-          <div class="mt-2">
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required=""
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div>
-          <button
-            type="submit"
-            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Sign in
-          </button>
-        </div>
-      </form>
-
-      <p class="mt-10 text-center text-sm text-gray-500">
-        Not a member?
-        {{ " " }}
-        <a
-          href="#"
-          class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-          >Start a 14 day free trial</a
+  <div class="admin-login-page">
+    <el-form label-position="top">
+      <el-form-item label="email" prop="email">
+        <el-input v-model="form.email" />
+      </el-form-item>
+      <el-form-item label="password" prop="password">
+        <el-input v-model="form.password" />
+      </el-form-item>
+      <el-form-item>
+        <el-button class="w-full" type="primary" @click="onLogin"
+          >Submit</el-button
         >
-      </p>
-    </div>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
-<!-- <style lang="scss">
-@import "@/assets/css/reset.scss";
-</style> -->
+<script lang="ts" setup>
+import type { Customer } from '@/types/customer'
+import { useCookie } from '#imports'
+
+const authStore = useAuthStore()
+
+interface FormLogin {
+  email: string
+  password: string
+}
+
+const form = ref<FormLogin>({
+  email: 'admin@gmail.com1',
+  password: '123456',
+})
+
+const onLogin = async () => {
+  try {
+    const { data, error } = await useCustomFetch<Customer>(
+      '/api/customer/login',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form.value),
+      },
+    )
+    console.log('pass', data)
+
+    const accessToken = useCookie('accessToken')
+
+    accessToken.value = data.value?.token || ''
+
+    setTimeout(async () => {
+      await authStore.getUser()
+
+      navigateTo('/admin/products-management')
+    }, 1000)
+  } catch (error: any) {
+    ElNotification({
+      title: 'Success',
+      message: error.value?.data.message,
+      type: 'error',
+    })
+  }
+}
+</script>
+
+<style lang="scss">
+.admin-login-page {
+  @apply flex justify-center items-center h-screen;
+
+  .el-form {
+    @apply w-full max-w-[400px];
+  }
+}
+</style>
