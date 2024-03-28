@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <template v-if="categories && categories.length">
-      <HomepageMain :categories="categories" />
+    <template v-if="categorySelling && categorySelling.length">
+      <HomepageMain :categorySelling="categorySelling" />
     </template>
   </div>
 </template>
@@ -14,7 +14,22 @@ definePageMeta({
   layout: 'custom',
 })
 
-const { data: categories } = useFetch<Category[]>('/api/categories')
+const { data: categories } = await useFetch<Category[]>('/api/categories')
+const categorySelling = ref<Category[]>([])
+if (categories.value) {
+  categorySelling.value = categories.value.filter(
+    (category) =>
+      category.name === 'dong-ho-nam-selling' ||
+      category.name === 'dong-ho-nu-selling',
+  )
+}
+// console.log(
+//   categories.value?.filter(
+//     (category) =>
+//       category.name === 'dong-ho-nam-selling' ||
+//       category.name === 'dong-ho-nu-selling',
+//   ),
+// )
 
 // const { data: allProductsData } = useFetch('/api/products');
 // const donhonamsellingData = ref([]);

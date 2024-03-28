@@ -88,11 +88,7 @@
           </el-form-item>
         </el-form>
 
-        <el-button
-          style="width: 100px"
-          type="primary"
-          :plain="true"
-          @click="onCreate"
+        <el-button style="width: 100px" type="primary" @click="onCreate"
           >Create</el-button
         >
       </div>
@@ -180,6 +176,8 @@ const onCreate = async () => {
       message: 'You have successfully created the product',
       type: 'success',
     })
+
+    navigateTo('/admin/products-management')
   })
 }
 

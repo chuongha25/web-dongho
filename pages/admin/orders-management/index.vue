@@ -56,6 +56,7 @@
 import { Edit, Delete } from '@element-plus/icons-vue'
 import type { Order } from '@/types/order'
 import { ref } from 'vue'
+import { ElNotification } from 'element-plus'
 definePageMeta({
   layout: 'dashboard',
 })
@@ -104,5 +105,11 @@ const toDelete = async (id: string) => {
   }),
     // Cập nhật lại dữ liệu
     fetchData()
+
+  ElNotification({
+    title: 'Success',
+    message: 'You have successfully delete the order',
+    type: 'success',
+  })
 }
 </script>

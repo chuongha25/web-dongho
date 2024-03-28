@@ -53,7 +53,7 @@
       </el-menu-item>
       <el-menu-item @click="handleClick(5)" index="5">
         <el-icon><UserFilled /></el-icon>
-        <span>About</span>
+        <span>categories</span>
       </el-menu-item>
 
       <!-- Sidebar Setting -->
@@ -111,7 +111,7 @@ watch(
         case '/admin/reports-management':
           activeMenuItem.value = '4'
           break
-        case '/admin/about':
+        case '/admin/categories-management':
           activeMenuItem.value = '5'
           break
         default:
@@ -141,7 +141,7 @@ const handleClick = (index: any) => {
       router.push('/admin/reports-management')
       break
     case 5:
-      router.push('/admin/about')
+      router.push('/admin/categories-management')
       break
     default:
       break
