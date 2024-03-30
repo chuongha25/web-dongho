@@ -7,6 +7,7 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: 'dashboard',
+  middleware: ['auth'],
 })
 
 import { Line } from 'vue-chartjs'

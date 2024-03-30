@@ -5,7 +5,7 @@ export type Product = {
   branch: string
   price: number
   images: string[]
-  logoCasio: string
+  logoBrand: string
   productCode: string
   description: string
   imagesDetail: ImageDetail

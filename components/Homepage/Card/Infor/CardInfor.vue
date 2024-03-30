@@ -178,7 +178,7 @@ const onSubmit = async () => {
     }
 
     // lấy hết dữ liệu trên form vào một biến
-    const dataOrder: any = {
+    const dataOrder = {
       products: Object.values(cartStore.cart).map((item) => ({
         name: item.data.name,
         quantity: item.quantity,
@@ -194,9 +194,14 @@ const onSubmit = async () => {
       status: form.status,
     }
 
+    interface OrderEntity {
+      dataOrder: any
+      orderId: string
+    }
+
     try {
       // Sử dụng useFetch để gửi yêu cầu POST đến endpoint api '/api/order' để thêm mới đơn hàng vào csdl
-      const { data, error } = await useFetch('/api/oders', {
+      const { data, error } = await useFetch<OrderEntity>('/api/oders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

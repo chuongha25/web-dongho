@@ -1,6 +1,7 @@
 import CustomerModel from '~/server/models/Customer.model'
 import jwt from 'jsonwebtoken'
 
+// Hàm để tạo ra JWT token
 function generateToken(
   payload: any,
   secret: string,
@@ -21,12 +22,13 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Một payload JWT được tạo từ thông tin của customer
     const payloadJwt = {
       id: customer._id,
       email: customer.email,
       name: customer.name,
     }
-
+    // Token được tạo bằng cách gọi hàm jwt.sign với payload(dữ liệu muốn mã hóa) và secret key(chìa khóa)
     const accessToken = await jwt.sign(payloadJwt, process.env.JWT_SECRET || '')
 
     if (accessToken) {
@@ -35,6 +37,7 @@ export default defineEventHandler(async (event) => {
       //   { token: accessToken },
       // )
 
+      // Cập nhật token trong cơ sở dữ liệu
       const data = await CustomerModel.findOneAndUpdate(
         { _id: customer._id },
         { token: accessToken || '' },

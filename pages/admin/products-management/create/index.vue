@@ -101,7 +101,6 @@ definePageMeta({
   layout: 'dashboard',
 })
 
-import type { Product } from '@/types/product'
 import { ElNotification } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 
@@ -160,7 +159,7 @@ const onCreate = async () => {
   formRef.value.validate(async (vaild) => {
     if (!vaild) return
 
-    await fetch('/api/products', {
+    await useCustomFetch('/api/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

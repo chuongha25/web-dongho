@@ -12,6 +12,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Not Found',
       })
 
+    // Giải mã accessToken bằng cách sử dụng hàm jwt.verify và thông tin payload của token được lấy ra, trong đó chứa ID của người dùng
     const { id } = (await jwt.verify(
       accessToken || '',
       process.env.JWT_SECRET || '',
@@ -19,6 +20,7 @@ export default defineEventHandler(async (event) => {
 
     if (!id) throw createError({ message: 'Not authorizion' })
 
+    // Truy vấn csdl để lấy thông tin người dùng
     const customer = await CustomerModel.findOne({ _id: id })
     const profile = await ProfileModel.findOne({ userId: id })
 
@@ -29,10 +31,11 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Xử lý kết quả và trả về thông tin người dùng
     const data = {
+      id: customer._id,
       name: customer.name,
       email: customer.email,
-      avatar: customer.avatar,
       token: customer.token,
       profile,
     }

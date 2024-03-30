@@ -16,5 +16,7 @@ definePageMeta({
 const route = useRoute()
 const id = route.params.id
 
-const { data: productDetailData } = useFetch<Product>(`/api/products/${id}`)
+const { data: productDetailData } = await useFetch<Product>(
+  `/api/products/${id}`,
+)
 </script>

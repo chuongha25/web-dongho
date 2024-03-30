@@ -33,7 +33,7 @@ import type { Category } from '~/types/category'
 const listCategories = ref<Category[]>([])
 
 const fetchData = async () => {
-  const { data } = await useFetch<Category[]>('/api/categories')
+  const { data } = await useCustomFetch<Category[]>('/api/categories')
 
   listCategories.value = data.value || []
 }
@@ -49,7 +49,7 @@ const toEdit = (id: string) => {
 }
 
 const toDelete = async (id: string) => {
-  await useFetch(`/api/categories/${id}`, {
+  await useCustomFetch(`/api/categories/${id}`, {
     method: 'DELETE',
   })
 

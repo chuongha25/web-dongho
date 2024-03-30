@@ -1,4 +1,4 @@
-// GET /api/products/:id -> update product by id
+// GET /api/customer/profile/:id -> update profile by id
 
 import ProfileModel from '~/server/models/Profile.model'
 
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     throw new Error('Profile ID is missing')
   }
 
-  // Update product
+  // Update profile
   try {
     await ProfileModel.findByIdAndUpdate(id, body)
     return { message: 'Profile updated' }

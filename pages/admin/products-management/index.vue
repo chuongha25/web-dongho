@@ -85,7 +85,7 @@ const toEdit = (id: string) => {
 }
 
 const toDelete = async (id: string) => {
-  await fetch(`/api/products/${id}`, {
+  await useCustomFetch(`/api/products/${id}`, {
     method: 'DELETE',
   })
   // Cập nhật lại dữ liệu

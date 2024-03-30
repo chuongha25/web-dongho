@@ -46,14 +46,16 @@ const onLogin = async () => {
     )
     console.log('pass', data)
 
+    // Lưu vào cookie
     const accessToken = useCookie('accessToken')
-
+    // Lấy thông tin token và lưu vào cookie có tên accessToken
     accessToken.value = data.value?.token || ''
 
     setTimeout(async () => {
+      // hàm getUser từ store được gọi để lấy thông tin của người dùng sau khi đã đăng nhập
       await authStore.getUser()
 
-      navigateTo('/admin/products-management')
+      navigateTo('/admin/dashboard')
     }, 1000)
   } catch (error: any) {
     ElNotification({

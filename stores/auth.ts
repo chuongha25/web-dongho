@@ -40,15 +40,4 @@ export const useAuthStore = defineStore('authStore', {
       }
     },
   },
-
-  // getters: {
-  //   totalPrice: (state) => {
-  //     let total = 0
-  //     for (const itemId in state.cart) {
-  //       const item = state.cart[itemId]
-  //       total += item.data.price * item.quantity
-  //     }
-  //     return total
-  //   },
-  // },
 })
