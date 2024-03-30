@@ -58,7 +58,7 @@ const rules = reactive<FormRules<typeof form>>({
   ],
 })
 
-const { data } = await useFetch<Order>(`/api/oders/${route.params?.id}`)
+const { data } = await useCustomFetch<Order>(`/api/oders/${route.params?.id}`)
 
 if (data.value !== null) {
   form.value = data.value
@@ -70,7 +70,7 @@ const onUpdate = async () => {
   formRef.value.validate(async (vaild) => {
     if (!vaild) return
 
-    await useFetch(`/api/oders/${route.params?.id}`, {
+    await useCustomFetch(`/api/oders/${route.params?.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

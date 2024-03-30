@@ -5,19 +5,16 @@
       <div v-if="orderDetail">
         <div class="customer-info">
           <h2>Thông tin khách hàng</h2>
-          <p><strong>Tên:</strong> {{ orderDetail.value.customer }}</p>
-          <p><strong>Địa chỉ:</strong> {{ orderDetail.value.adress }}</p>
-          <p><strong>Thành phố:</strong> {{ orderDetail.value.city }}</p>
-          <p><strong>Số điện thoại:</strong> {{ orderDetail.value.phone }}</p>
-          <p><strong>Email:</strong> {{ orderDetail.value.email }}</p>
+          <p><strong>Tên:</strong> {{ orderDetail.customer }}</p>
+          <p><strong>Địa chỉ:</strong> {{ orderDetail.adress }}</p>
+          <p><strong>Thành phố:</strong> {{ orderDetail.city }}</p>
+          <p><strong>Số điện thoại:</strong> {{ orderDetail.phone }}</p>
+          <p><strong>Email:</strong> {{ orderDetail.email }}</p>
         </div>
         <div class="order-products">
           <h2>Danh sách sản phẩm</h2>
           <ul>
-            <li
-              v-for="(product, index) in orderDetail.value.products"
-              :key="index"
-            >
+            <li v-for="(product, index) in orderDetail.products" :key="index">
               <h3>{{ product.name }}</h3>
               <p>Số lượng: {{ product.quantity }}</p>
               <p>
@@ -30,11 +27,11 @@
           <h2>Tổng thanh toán</h2>
           <p>
             <strong>Tổng tiền:</strong>
-            {{ formatPrice(orderDetail.value.totalPrice) }}
+            {{ formatPrice(orderDetail.totalPrice) }}
           </p>
           <p>
             <strong>Phương thức thanh toán:</strong>
-            {{ orderDetail.value.payment }}
+            {{ orderDetail.payment }}
           </p>
         </div>
       </div>
@@ -56,24 +53,22 @@ import { formatPrice } from '~/utils'
 const route = useRoute()
 const id = route.params.id
 
-// const { data: orderDetail } = await useFetch(`/api/oders/${id}`)
-
 // Khai báo biến cục bộ trong phương thức mounted hoặc created
-let orderDetail = ref<Order | null>(null)
+let orderDetail = ref<Order>()
 
 try {
-  const { data, error } = await useFetch<Order>(`/api/oders/${id}`, {
+  const { data, error } = await useCustomFetch<Order>(`/api/oders/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
 
-  if (data) {
+  if (data.value) {
     console.log('Chi tiết đơn hàng:', data)
 
     // Lưu dữ liệu vào biến cục bộ
-    orderDetail.value = data
+    orderDetail.value = data.value
   } else if (error) {
     console.error('Lỗi khi gửi yêu cầu lấy chi tiết đơn hàng:', error)
   }

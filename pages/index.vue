@@ -23,19 +23,4 @@ if (categories.value) {
       category.name === 'dong-ho-nu-selling',
   )
 }
-// console.log(
-//   categories.value?.filter(
-//     (category) =>
-//       category.name === 'dong-ho-nam-selling' ||
-//       category.name === 'dong-ho-nu-selling',
-//   ),
-// )
-
-// const { data: allProductsData } = useFetch('/api/products');
-// const donhonamsellingData = ref([]);
-// const donhonusellingData = ref([]);
-// if (allProductsData.value) {
-//   donhonamsellingData.value = allProductsData.value.filter(product => product.category === 'dong-ho-nam-selling');
-//   donhonusellingData.value = allProductsData.value.filter(product => product.category === 'dong-ho-nu-selling');
-// }
 </script>

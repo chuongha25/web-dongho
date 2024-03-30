@@ -55,7 +55,9 @@ const rules = reactive<FormRules<typeof form>>({
   ],
 })
 
-const { data } = await useFetch<Category>(`/api/categories/${route.params.id}`)
+const { data } = await useCustomFetch<Category>(
+  `/api/categories/${route.params.id}`,
+)
 
 if (data.value) {
   form.value = data.value
@@ -67,7 +69,7 @@ const onUpdate = async () => {
   formRef.value.validate(async (valid) => {
     if (!valid) return
 
-    await useFetch(`/api/categories/${route.params.id}`, {
+    await useCustomFetch(`/api/categories/${route.params.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application-json',

@@ -5,6 +5,8 @@ export default defineEventHandler(async (event) => {
   try {
     const accessToken = getHeader(event, 'Authorization')
 
+    if (!accessToken) return
+
     const { id } = jwt.verify(
       accessToken || '',
       process.env.JWT_SECRET || '',
@@ -14,6 +16,7 @@ export default defineEventHandler(async (event) => {
 
     return res
   } catch (error: any) {
+    console.log(error)
     throw createError({
       message: 'Logout failed!',
     })

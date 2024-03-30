@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-// product schema
+// Customer schema
 const schema: mongoose.Schema = new mongoose.Schema(
   {
     name: {
@@ -35,5 +35,5 @@ const schema: mongoose.Schema = new mongoose.Schema(
   { timestamps: true },
 )
 
-// product model
+// Customer model
 export default mongoose.model('Customer', schema)

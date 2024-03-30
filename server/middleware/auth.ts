@@ -2,12 +2,18 @@ import jwt from 'jsonwebtoken'
 
 export default defineEventHandler((event) => {
   const accessToken = getHeader(event, 'Authorization')
-  const role = getCookie(event, 'role')
+  const role = getHeader(event, 'Role')
 
-  const pathList = ['/api/products', '/api/categories', '/api/oders']
+  const pathList = [
+    '/api/products',
+    '/api/categories',
+    '/api/oders',
+    '/api/statistical',
+  ]
 
   try {
-    if (!pathList.find((item) => getRequestPath(event).includes(item))) return
+    if (!pathList.find((item) => getRequestPath(event).includes(item)) || !role)
+      return
 
     jwt.verify(accessToken || '', process.env.JWT_SECRET || '')
   } catch (error) {

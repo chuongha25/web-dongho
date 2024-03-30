@@ -29,9 +29,19 @@ const chartOptions = {
   responsive: true,
 }
 
-const { data: listData } = await useFetch('/api/statistical')
+const listData = ref<number[]>([])
 
-console.log(listData)
+const fetchData = async () => {
+  try {
+    const { data } = await useCustomFetch<number[]>('/api/statistical')
+    if (!data.value) return
+    listData.value = data.value
+  } catch (error: any) {
+    console.log(error)
+  }
+}
+
+await fetchData()
 
 chartData.labels = Object.keys(listData.value || {}).map((monthNumber) =>
   dayjs().month(parseInt(monthNumber)).format('MMMM'),

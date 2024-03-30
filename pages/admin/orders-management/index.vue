@@ -100,7 +100,7 @@ const toEdit = (id: string) => {
 }
 
 const toDelete = async (id: string) => {
-  await useFetch(`/api/oders/${id}`, {
+  await useCustomFetch(`/api/oders/${id}`, {
     method: 'DELETE',
   }),
     // Cập nhật lại dữ liệu

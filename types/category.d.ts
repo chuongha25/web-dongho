@@ -1,5 +1,5 @@
 export type Category = {
-  _id: String
+  _id: string
   name: string
   description: string
 }

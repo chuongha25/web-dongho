@@ -62,7 +62,7 @@ const onCreate = async () => {
   formRef.value.validate(async (vaild) => {
     if (!vaild) return
 
-    await fetch('/api/categories', {
+    await useCustomFetch('/api/categories', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

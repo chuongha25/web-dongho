@@ -59,22 +59,6 @@
           <el-form-item label="Branch" prop="branch">
             <el-input v-model="form.branch" />
           </el-form-item>
-          <!-- <el-form-item
-            label="Category"
-            v-for="(item, index) in form.category"
-            :key="index"
-            prop="category"
-          >
-            <el-card class="flex justify-between w-full">
-              <el-input
-                class="mr-4"
-                style="width: 369px"
-                v-model="form.category[index]"
-              />
-              <el-button @click="deleteCategory(index)">Delete</el-button>
-            </el-card>
-          </el-form-item> -->
-          <!-- <el-button class="mb-4" @click="addCategory">Add Category</el-button> -->
           <el-form-item label="Category" prop="category">
             <el-checkbox-group v-model="form.category" size="large">
               <el-checkbox
@@ -107,15 +91,12 @@ definePageMeta({
   layout: 'dashboard',
 })
 import type { Product } from '@/types/product'
+import type { Category } from '~/types/category'
 import { ElNotification } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 
 const route = useRoute()
 const form = ref<Product>()
-
-const handleChange = (index) => {
-  form.value.category[index] = !form.value.category[index]
-}
 
 const formRef = ref<FormInstance>()
 
@@ -144,7 +125,9 @@ const rulesThumbnail = (rule: any, value: any, callback: any) => {
   callback()
 }
 
-const { data } = await useFetch<Product>(`/api/products/${route.params?.id}`)
+const { data } = await useCustomFetch<Product>(
+  `/api/products/${route.params?.id}`,
+)
 
 if (data.value !== null) {
   form.value = data.value
@@ -164,7 +147,7 @@ const onUpdate = async () => {
   formRef.value.validate(async (vaild) => {
     if (!vaild) return
 
-    await fetch(`/api/products/${route.params?.id}`, {
+    await useCustomFetch(`/api/products/${route.params?.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -186,7 +169,8 @@ const goBack = () => {
   navigateTo('/admin/products-management')
 }
 
-const { data: listCategories } = await useFetch('/api/categories')
+const { data: listCategories } =
+  await useCustomFetch<Category[]>('/api/categories')
 </script>
 
 <style lang="scss" scoped>
