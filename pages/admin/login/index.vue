@@ -1,11 +1,11 @@
 <template>
   <div class="admin-login-page">
     <el-form label-position="top">
-      <el-form-item label="email" prop="email">
+      <el-form-item label="Email" prop="email">
         <el-input v-model="form.email" />
       </el-form-item>
-      <el-form-item label="password" prop="password">
-        <el-input v-model="form.password" />
+      <el-form-item label="Password" prop="password">
+        <el-input v-model="form.password" type="password" />
       </el-form-item>
       <el-form-item>
         <el-button class="w-full" type="primary" @click="onLogin"
@@ -44,22 +44,22 @@ const onLogin = async () => {
         body: JSON.stringify(form.value),
       },
     )
-    console.log('pass', data)
 
-    // Lưu vào cookie
+    // Lưu token vào cookie
     const accessToken = useCookie('accessToken')
     // Lấy thông tin token và lưu vào cookie có tên accessToken
-    accessToken.value = data.value?.token || ''
+    await new Promise((resolve) => {
+      accessToken.value = data.value?.token || ''
+      resolve(true)
+    })
 
-    setTimeout(async () => {
-      // hàm getUser từ store được gọi để lấy thông tin của người dùng sau khi đã đăng nhập
-      await authStore.getUser()
+    // hàm getUser từ store được gọi để lấy thông tin của người dùng sau khi đã đăng nhập
+    await authStore.getUser()
 
-      navigateTo('/admin/dashboard')
-    }, 1000)
+    navigateTo('/admin/dashboard')
   } catch (error: any) {
     ElNotification({
-      title: 'Success',
+      title: 'Error',
       message: error.value?.data.message,
       type: 'error',
     })

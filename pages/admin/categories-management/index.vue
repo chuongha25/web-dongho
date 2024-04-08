@@ -27,7 +27,7 @@ definePageMeta({
   layout: 'dashboard',
 })
 import { ref } from 'vue'
-import { ElNotification } from 'element-plus'
+import { ElNotification, ElMessageBox } from 'element-plus'
 import type { Category } from '~/types/category'
 
 const listCategories = ref<Category[]>([])
@@ -49,17 +49,38 @@ const toEdit = (id: string) => {
 }
 
 const toDelete = async (id: string) => {
-  await useCustomFetch(`/api/categories/${id}`, {
-    method: 'DELETE',
-  })
+  ElMessageBox.confirm(
+    'proxy will permanently delete the category. Continue?',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning',
+    },
+  )
+    .then(async () => {
+      await useCustomFetch(`/api/categories/${id}`, {
+        method: 'DELETE',
+      })
+      // Cập nhật lại dữ liệu
+      fetchData()
 
-  ElNotification({
-    title: 'Success',
-    message: 'You have successfully delete the category',
-    type: 'success',
-  })
-
-  // Cập nhật lại dữ liệu
-  fetchData()
+      ElNotification({
+        type: 'success',
+        message: 'Delete completed',
+        duration: 4000,
+      })
+    })
+    .catch(() => {
+      ElNotification({
+        type: 'info',
+        message: 'Delete canceled',
+        duration: 4000,
+      })
+    })
 }
 </script>
+
+<style lang="scss">
+@import '@/assets/css/pages/admin/categories/create/create.scss';
+</style>

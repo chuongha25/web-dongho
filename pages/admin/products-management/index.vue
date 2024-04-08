@@ -7,12 +7,16 @@
       <el-button type="primary" @click="toCreate">Create products</el-button>
     </div>
     <el-table :data="listProducts" style="width: 100%">
-      <el-table-column prop="_id" label="Id" width="180" />
+      <el-table-column prop="_id" label="Id" />
       <el-table-column prop="name" label="Name" width="270" />
-      <el-table-column prop="category" label="Category" width="190" />
-      <el-table-column prop="price" label="Price" width="130" />
-      <el-table-column prop="branch" label="Branch" width="130" />
-      <el-table-column prop="operation" label="Operation" width="170">
+      <el-table-column label="Price">
+        <template #default="{ row }">
+          <p>{{ formatPrice(row.price) }}</p>
+        </template>
+      </el-table-column>
+      <el-table-column prop="category" label="Category" />
+      <el-table-column prop="branch" label="Branch" />
+      <el-table-column label="Operation">
         <template v-slot="{ row }">
           <el-button type="primary" @click="toEdit(row._id)">Edit</el-button>
           <el-button type="primary" @click="toDelete(row._id)"
@@ -39,7 +43,7 @@ definePageMeta({
   layout: 'dashboard',
 })
 import type { Product } from '@/types/product'
-import { ElNotification } from 'element-plus'
+import { ElNotification, ElMessageBox } from 'element-plus'
 import { formatPrice } from '~/utils'
 
 const listProducts = ref<Product[]>([])
@@ -85,17 +89,35 @@ const toEdit = (id: string) => {
 }
 
 const toDelete = async (id: string) => {
-  await useCustomFetch(`/api/products/${id}`, {
-    method: 'DELETE',
-  })
-  // Cập nhật lại dữ liệu
-  fetchData()
+  ElMessageBox.confirm(
+    'proxy will permanently delete the product. Continue?',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning',
+    },
+  )
+    .then(async () => {
+      await useCustomFetch(`/api/products/${id}`, {
+        method: 'DELETE',
+      })
+      // Cập nhật lại dữ liệu
+      fetchData()
 
-  ElNotification({
-    title: 'Success',
-    message: 'You have successfully delete the product',
-    type: 'success',
-  })
+      ElNotification({
+        type: 'success',
+        message: 'Delete completed',
+        duration: 4000,
+      })
+    })
+    .catch(() => {
+      ElNotification({
+        type: 'info',
+        message: 'Delete canceled',
+        duration: 4000,
+      })
+    })
 }
 </script>
 

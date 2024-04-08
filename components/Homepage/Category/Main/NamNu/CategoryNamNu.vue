@@ -65,6 +65,13 @@ const categories: Record<
     description:
       'Những mẫu đồng hồ nữ đẹp đã trở thành biểu tượng của giới mê thời trang bởi không chỉ thiết kế bắt mắt, mà còn nằm ở vật liệu bền bỉ theo thời gian, cỗ máy đáng tin cậy, tính năng hữu ích cho người sử dụng. Đặc biệt, các thương hiệu đồng hồ nữ thời trang như Daniel Wellington, Saga, Fossil,… làm rất tốt nhiệm vụ khi liên tục cho ra mắt bộ sưu tập mới hằng năm. Nếu bạn mê mẩn các sản phẩm đồng hồ đeo tay nữ cao cấp, Hải Triều là điểm đến tin cậy.',
   },
+  'dong-ho-doi': {
+    title: '300+ Đồng hồ đôi (cặp) đẹp, chính hãng 100%, trả góp 0%',
+    image:
+      'https://image.donghohaitrieu.com/wp-content/uploads/2023/11/banner-danh-muc-dong-ho-doi.jpg',
+    description:
+      'Đồng hồ đôi đẹp là sự “chắp cánh” tốt nhất cho tình yêu của hai bạn để bước thêm một nấc thang mới. Bạn sẽ thấy sức mạnh diệu kì đến từ món quà tặng tuyệt vời này, nó không chỉ nằm ở giá trị vật chất mà đồng hồ cặp (đôi) chính hãng còn mang những giá trị tinh thần hết sức ý nghĩa mà sẽ làm tình yêu đôi lứa bùng cháy và lưu giữ được những khoảng khắc thời gian lãng mạn trong tình yêu của hai bạn…',
+  },
 }
 
 const categoriesTitle: Record<string, { title: string }> = {
@@ -73,6 +80,9 @@ const categoriesTitle: Record<string, { title: string }> = {
   },
   'dong-ho-nu': {
     title: 'Bộ sưu tập đồng hồ nữ',
+  },
+  'dong-ho-doi': {
+    title: 'Bộ sưu tập đồng hồ đôi',
   },
 }
 

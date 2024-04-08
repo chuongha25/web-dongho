@@ -6,7 +6,7 @@
     >
       <div class="service__item">
         <div class="service__item__img">
-          <NuxtLink to="/">
+          <NuxtLink to="/category/contact">
             <img
               src="https://image.donghohaitrieu.com/wp-content/uploads/2024/01/hinh-dich-vu-sua-chua-dong-ho.jpg"
               alt="Service"
@@ -16,7 +16,7 @@
       </div>
       <div class="service__item">
         <div class="service__item__img">
-          <NuxtLink to="/">
+          <NuxtLink to="/category/contact">
             <img
               src="https://image.donghohaitrieu.com/wp-content/uploads/2024/01/hinh-dich-vu-in-khac-laser.jpg"
               alt="Service"
@@ -26,7 +26,7 @@
       </div>
       <div class="service__item">
         <div class="service__item__img">
-          <NuxtLink to="/">
+          <NuxtLink to="/category/contact">
             <img
               src="https://image.donghohaitrieu.com/wp-content/uploads/2024/01/hinh-dich-vu-khach-hang-doanh-nghiep.jpg"
               alt="Service"

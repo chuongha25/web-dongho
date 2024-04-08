@@ -53,7 +53,7 @@
       </el-menu-item>
       <el-menu-item @click="handleClick(5)" index="5">
         <el-icon><UserFilled /></el-icon>
-        <span>categories</span>
+        <span>Categories</span>
       </el-menu-item>
 
       <!-- Sidebar Setting -->
@@ -115,6 +115,7 @@ watch(
           activeMenuItem.value = '5'
           break
         default:
+          activeMenuItem.value = ''
           break
       }
       localStorage.setItem('activeMenuItem', activeMenuItem.value)

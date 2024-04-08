@@ -6,122 +6,122 @@
     >
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/casio">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-kinh-sapphire.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/orient">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-quatz.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/citizen">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-nang-luong-anh-sang.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/casio">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-mat-chu-nhat.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/orient">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-mat-vuong.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/citizen">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-mat-tron.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/casio">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-day-cao-su.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/orient">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-day-da.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/citizen">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-day-kim-loai.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/casio">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-mau-vang.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/orient">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-mau-den.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
       <div class="albums__item">
         <div class="albums__img">
-          <a href="#">
+          <nuxt-link to="/category/brands/citizen">
             <img
               src="https://fridayshopping.vn/wp-content/uploads/2023/12/icon-dong-ho-mau-trang.jpg"
               alt="Albums"
             />
-          </a>
+          </nuxt-link>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
     const { id } = jwt.verify(
       accessToken || '',
-      process.env.JWT_SECRET || '',
+      `${process.env.VITE_JWT_SECRET}` || '',
     ) as JwtPayload
 
     const res = await CustomerModel.findOneAndUpdate({ _id: id }, { token: '' })

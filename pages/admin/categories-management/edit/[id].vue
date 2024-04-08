@@ -13,8 +13,8 @@
           :model="form"
           label-position="top"
         >
-          <el-form-item label="Category" prop="name">
-            <el-input v-model="form.name" />
+          <el-form-item label="Category">
+            <el-input v-model="form.name" disabled />
           </el-form-item>
           <el-form-item label="Description" prop="description">
             <el-input v-model="form.description" />
@@ -47,9 +47,6 @@ const form = ref<Category>()
 const formRef = ref<FormInstance>()
 
 const rules = reactive<FormRules<typeof form>>({
-  name: [
-    { required: true, message: 'Vui lòng nhập category', trigger: 'change' },
-  ],
   description: [
     { required: true, message: 'Vui lòng nhập description', trigger: 'change' },
   ],
@@ -79,7 +76,7 @@ const onUpdate = async () => {
 
     ElNotification({
       title: 'Success',
-      message: 'You have successfully updated the category',
+      message: 'Update completed',
       type: 'success',
     })
 

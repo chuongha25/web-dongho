@@ -19,13 +19,12 @@
       display: flex;
       align-items: center;
 
-      .el-input {
-        // margin: 52px 0;
+      .header__search {
+        display: none;
+        @apply md:block;
       }
 
       .header__card__scoped {
-        // margin: 52px 0;
-
         a {
           display: block;
           padding: 0 20px;
