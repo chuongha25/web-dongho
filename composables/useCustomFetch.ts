@@ -14,6 +14,7 @@ const useCustomFetch = async <T>(url: string, options = {}) => {
   })
 
   if (error.value) {
+    // Nếu middleaware trên server trả về lỗi 401 thì chuyển hướng về trang login
     if (error.value.statusCode === 401) {
       router.push('/admin/login')
     }

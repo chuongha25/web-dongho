@@ -29,14 +29,12 @@ export default defineEventHandler(async (event) => {
       name: customer.name,
     }
     // Token được tạo bằng cách gọi hàm jwt.sign với payload(dữ liệu muốn mã hóa) và secret key(chìa khóa)
-    const accessToken = await jwt.sign(payloadJwt, process.env.JWT_SECRET || '')
+    const accessToken = await jwt.sign(
+      payloadJwt,
+      `${process.env.VITE_JWT_SECRET}` || '',
+    )
 
     if (accessToken) {
-      // return await CustomerModel.findOneAndUpdate(
-      //   { _id: customer._id },
-      //   { token: accessToken },
-      // )
-
       // Cập nhật token trong cơ sở dữ liệu
       const data = await CustomerModel.findOneAndUpdate(
         { _id: customer._id },

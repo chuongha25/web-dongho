@@ -24,7 +24,6 @@
           class="mb-5"
           style="width: 100px"
           type="primary"
-          :plain="true"
           @click="onCreate"
           >Create</el-button
         >
@@ -75,7 +74,7 @@ const onCreate = async () => {
 
     ElNotification({
       title: 'Success',
-      message: 'You have successfully created the category',
+      message: 'Create completed',
       type: 'success',
     })
 

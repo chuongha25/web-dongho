@@ -27,6 +27,10 @@ const schema: mongoose.Schema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    address: {
+      type: String,
+      required: false,
+    },
     userId: {
       type: String,
       required: true,

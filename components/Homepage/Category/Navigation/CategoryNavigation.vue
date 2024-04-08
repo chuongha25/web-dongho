@@ -8,6 +8,9 @@
       <el-breadcrumb-item v-if="brandComputed">{{
         brandComputed
       }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="props.title">{{
+        props.title
+      }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
@@ -19,15 +22,14 @@ const route = useRoute()
 // Lấy tất cả các tham số của đường dẫn hiện tại và gán chúng cho biến param
 // route.params chứa một đối tượng chứa tất cả các tham số trên URL
 const param = route.params
-// console.log(param)
 
 // Sử dụng cú pháp giải nén (destructuring) để trích xuất hai thuộc tính 'category' và 'brand' từ đối tượng param
 const { category, brand } = param
-// console.log(category, brand)
 
 const categories: Record<string, string> = {
   'dong-ho-nam': 'Đồng hồ nam',
   'dong-ho-nu': 'Đồng hồ nữ',
+  'dong-ho-doi': 'Đồng hồ đôi',
 }
 
 const categoryComputed = computed(() => {
@@ -44,6 +46,10 @@ const brands: Record<string, string> = {
 
 const brandComputed = computed(() => {
   return brand ? brands[brand as string] : ''
+})
+
+const props = withDefaults(defineProps<{ title: string }>(), {
+  title: '',
 })
 </script>
 

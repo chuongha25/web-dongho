@@ -42,7 +42,7 @@
             <el-input v-if="isEdit" v-model="form.lastName"></el-input>
             <span v-else>{{ form.lastName }}</span>
           </el-form-item>
-          <el-form-item label="Sex" prop="sex">
+          <el-form-item label="Gender" prop="sex">
             <el-radio-group v-if="isEdit" v-model="form.sex">
               <el-radio
                 v-for="(item, index) in sexList"
@@ -111,6 +111,7 @@ const rules = reactive<FormRules<Profile>>({
   firstName: Validate.required({ message: 'Please input the first name' }),
   lastName: Validate.required({ message: 'Please input the last name' }),
   phone: Validate.required({ message: 'Please input the phone number' }),
+  sex: Validate.required({ message: 'Please input the sex' }),
   emailContact: [
     Validate.required({ message: 'Please input email contact' }),
     Validate.email({ message: 'Please input correct format email' }),

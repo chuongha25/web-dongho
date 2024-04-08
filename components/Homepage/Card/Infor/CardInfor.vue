@@ -114,8 +114,6 @@
 </template>
 
 <script setup lang="ts">
-import emailjs from '@emailjs/browser'
-
 import {
   Document,
   LocationInformation,
@@ -212,7 +210,7 @@ const onSubmit = async () => {
       if (data) {
         // Truy cập orderId từ data
         const orderId = data?.value?.orderId
-        console.log('OrderId:', orderId)
+        // console.log('OrderId:', orderId)
 
         if (!orderId) return
         // Lưu orderId vào trạng thái của giỏ hàng

@@ -157,7 +157,7 @@ const onUpdate = async () => {
 
     ElNotification({
       title: 'Success',
-      message: 'You have successfully updated the product',
+      message: 'Update completed',
       type: 'success',
     })
 

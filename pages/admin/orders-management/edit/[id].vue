@@ -13,16 +13,36 @@
           :model="form"
           label-position="top"
         >
-          <h1>Customer: {{ form.customer }}</h1>
-          <div v-for="(item, index) in form.products" :key="index">
-            <p>Products: {{ item.name }}</p>
-            <p>Quantity: {{ item.quantity }}</p>
-            <p>Price: {{ item.price }}</p>
+          <h1 class="mb-1">
+            <span class="font-semibold">Customer: </span>{{ form.customer }}
+          </h1>
+          <div class="mb-1" v-for="(item, index) in form.products" :key="index">
+            <p class="mb-1">
+              <span class="font-semibold">Products: </span>{{ item.name }}
+            </p>
+            <p class="mb-1">
+              <span class="font-semibold">Quantity: </span> {{ item.quantity }}
+            </p>
+            <p class="mb-1">
+              <span class="font-semibold">Price: </span> {{ item.price }}
+            </p>
             <hr v-if="index < form.products.length - 1" />
           </div>
-          <p>Purchase date: {{ dayjs(form.createdAt) }}</p>
+          <p class="mb-1">
+            <span class="font-semibold">Purchase date: </span>
+            {{ dayjs(form.createdAt).format('YYYY-MM-DD HH:mm:ss') }}
+          </p>
           <el-form-item label="Status" prop="status">
-            <el-input v-model="form.status" style="width: 180px" />
+            <el-radio-group v-model="form.status" size="large">
+              <el-radio
+                v-for="(item, index) in statusOrder"
+                :key="index"
+                :label="item"
+                :value="item"
+                size="large"
+              >
+              </el-radio>
+            </el-radio-group>
           </el-form-item>
         </el-form>
         <el-button
@@ -80,7 +100,7 @@ const onUpdate = async () => {
 
     ElNotification({
       title: 'Success',
-      message: 'You have successfully updated the order',
+      message: 'Update completed',
       type: 'success',
     })
 
@@ -91,6 +111,8 @@ const onUpdate = async () => {
 const goBack = () => {
   navigateTo('/admin/orders-management')
 }
+
+const statusOrder = ['DAT_HANG', 'XU_LY', 'VAN_CHUYEN', 'HOAN_THANH']
 </script>
 
 <style lang="scss" scoped>

@@ -65,7 +65,7 @@ try {
   })
 
   if (data.value) {
-    console.log('Chi tiết đơn hàng:', data)
+    // console.log('Chi tiết đơn hàng:', data)
 
     // Lưu dữ liệu vào biến cục bộ
     orderDetail.value = data.value

@@ -59,27 +59,17 @@
           <el-form-item label="Branch" prop="branch">
             <el-input v-model="form.branch" />
           </el-form-item>
-          <el-form-item
-            label="Category"
-            v-for="(item, index) in form.category"
-            :key="index"
-            :prop="'category.' + index"
-            :rules="{
-              required: true,
-              message: 'Vui lòng nhập category',
-              trigger: 'change',
-            }"
-          >
-            <el-card class="flex justify-between w-full">
-              <el-input
-                class="mr-4"
-                style="width: 369px"
-                v-model="form.category[index]"
+          <el-form-item label="Category" prop="category">
+            <el-checkbox-group v-model="form.category" size="large">
+              <el-checkbox
+                v-for="(item, index) in listCategories"
+                :key="index"
+                :value="item.name"
+                :label="item.name"
+                size="large"
               />
-              <el-button @click="deleteCategory(index)">Delete</el-button>
-            </el-card>
+            </el-checkbox-group>
           </el-form-item>
-          <el-button class="mb-4" @click="addCategory">Add Category</el-button>
           <el-form-item label="Description" prop="description">
             <el-input v-model="form.description" />
           </el-form-item>
@@ -101,6 +91,7 @@ definePageMeta({
   layout: 'dashboard',
 })
 
+import type { Category } from '~/types/category'
 import { ElNotification } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 
@@ -111,7 +102,7 @@ const form = reactive({
   },
   name: '',
   branch: '',
-  category: [''],
+  category: [],
   description: '',
   price: '',
 })
@@ -145,14 +136,6 @@ const deleteImage = (index: number) => {
   form.imagesDetail.thumbnailImages.splice(index, 1)
 }
 
-const addCategory = () => {
-  form.category.push('')
-}
-
-const deleteCategory = (index: number) => {
-  form.category.splice(index, 1)
-}
-
 const onCreate = async () => {
   if (!formRef.value) return
 
@@ -172,7 +155,7 @@ const onCreate = async () => {
 
     ElNotification({
       title: 'Success',
-      message: 'You have successfully created the product',
+      message: 'Create completed',
       type: 'success',
     })
 
@@ -183,6 +166,9 @@ const onCreate = async () => {
 const goBack = () => {
   navigateTo('/admin/products-management')
 }
+
+const { data: listCategories } =
+  await useCustomFetch<Category[]>('/api/categories')
 </script>
 
 <style lang="scss" scoped>

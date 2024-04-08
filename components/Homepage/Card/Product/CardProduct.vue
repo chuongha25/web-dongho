@@ -21,15 +21,6 @@
             </div>
             <div class="infor-des">
               <div class="infor-des__quantity">
-                <!-- <el-input-number
-                  :model-value="item.quantity"
-                  :min="1"
-                  :max="10"
-                  @change="
-                    (value, oldValue) =>
-                      handleChange(value, oldValue, item.data)
-                  "
-                /> -->
                 <el-input-number
                   v-model="item.quantity"
                   :min="1"
@@ -73,13 +64,8 @@ const cartStore = useCartStore()
 
 const carts = computed(() => Object.values(cartStore.cart))
 
-// const handleChange = (newValue: number, oldValue: number, item: Product) => {
-//   console.log(newValue, oldValue, item)
-//   cartStore.addCart(item, newValue)
-// }
-
 const handleChange = () => {
-  console.log('quantity update')
+  // console.log('quantity update')
 }
 
 const handleDelete = (id: string) => {

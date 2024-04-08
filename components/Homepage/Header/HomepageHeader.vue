@@ -57,25 +57,25 @@
         <NuxtLink to="/category/dong-ho-nu">
           <el-menu-item index="3">Nữ</el-menu-item>
         </NuxtLink>
-        <NuxtLink to="/">
+        <NuxtLink to="/category/dong-ho-doi">
           <el-menu-item index="4">Cặp Đôi</el-menu-item>
         </NuxtLink>
         <el-sub-menu index="5">
           <template #title>Phụ Kiện</template>
           <NuxtLink to="/">
-            <el-menu-item index="5-1">Dây da đồng hồ</el-menu-item>
+            <el-menu-item disabled index="5-1">Dây da đồng hồ</el-menu-item>
           </NuxtLink>
           <NuxtLink to="/">
-            <el-menu-item index="5-2">Dây kim loại</el-menu-item>
+            <el-menu-item disabled index="5-2">Dây kim loại</el-menu-item>
           </NuxtLink>
           <NuxtLink to="/">
-            <el-menu-item index="5-3">Kính cường lực</el-menu-item>
+            <el-menu-item disabled index="5-3">Kính cường lực</el-menu-item>
           </NuxtLink>
         </el-sub-menu>
-        <NuxtLink to="/">
+        <NuxtLink to="/category/contact">
           <el-menu-item index="6">Liện Hệ</el-menu-item>
         </NuxtLink>
-        <NuxtLink to="/">
+        <NuxtLink to="/category/information">
           <el-menu-item index="7">Thông Tin</el-menu-item>
         </NuxtLink>
       </el-menu>
@@ -90,14 +90,14 @@ const input1 = ref('')
 
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 
 const cartStore = useCartStore()
 const badge = ref()
 
 watch(badge, (newValue, oldValue) => {
-  console.log('Giá trị mới của badge:', newValue)
+  // console.log('Giá trị mới của badge:', newValue)
 })
 
 watch(

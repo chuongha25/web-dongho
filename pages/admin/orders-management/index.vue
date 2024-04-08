@@ -1,28 +1,41 @@
 <template>
-  <div class="dashboard-products">
-    <div
-      class="dashboard-products__list flex items-center mb-8 justify-between"
-    >
-      <p>List Order</p>
-      <el-button type="primary">Create orders</el-button>
+  <div class="dashboard-order">
+    <div class="dashboard-order__list flex items-center mb-8 justify-between">
+      <p style="color: #606266" class="text-lg font-bold font-sans">
+        List Order
+      </p>
+      <el-button type="primary" @click="toManager">Manager orders</el-button>
     </div>
     <el-table :data="listOrders" style="width: 100%">
-      <el-table-column prop="customer" label="Customer" width="150" />
+      <el-table-column prop="customer" label="Customer" />
       <el-table-column label="Product" width="280">
         <template #default="{ row }">
           <div v-for="(product, index) in row.products" :key="index">
             <p>{{ product.name }}</p>
             <p>Quantity: {{ product.quantity }}</p>
-            <p>Price: {{ product.price }}</p>
+            <p>Price: {{ formatPrice(product.price) }}</p>
             <hr v-if="index < row.products.length - 1" />
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="totalPrice" label="Total Price" width="130" />
-      <el-table-column prop="adress" label="Adress" width="120" />
-      <el-table-column prop="city" label="City" width="120" />
-      <el-table-column prop="status" label="Status Order" width="150" />
-      <el-table-column prop="operation" label="Operation" width="140">
+      <!-- <el-table-column prop="totalPrice" label="Total Price" /> -->
+      <el-table-column label="Total Price">
+        <template #default="{ row }">
+          <p>{{ formatPrice(row.totalPrice) }}</p>
+        </template>
+      </el-table-column>
+      <el-table-column label="Adress">
+        <template #default="{ row }">
+          <p>{{ row.adress + ', ' + row.city }}</p>
+        </template>
+      </el-table-column>
+      <el-table-column prop="createdAt" label="Order date">
+        <template #default="{ row }">
+          <p>{{ dayjs(row.createdAt).format('YYYY-MM-DD HH:mm:ss') }}</p>
+        </template>
+      </el-table-column>
+      <el-table-column prop="status" label="Status Order" />
+      <el-table-column prop="operation" label="Operation">
         <template v-slot="{ row }">
           <el-button
             type="primary"
@@ -56,7 +69,8 @@
 import { Edit, Delete } from '@element-plus/icons-vue'
 import type { Order } from '@/types/order'
 import { ref } from 'vue'
-import { ElNotification } from 'element-plus'
+import { ElNotification, ElMessageBox } from 'element-plus'
+import dayjs from 'dayjs'
 definePageMeta({
   layout: 'dashboard',
 })
@@ -95,21 +109,43 @@ const handlePageChange = async (page: number) => {
 
 fetchData()
 
+const toManager = () => {
+  navigateTo('/admin/orders-management/manager')
+}
+
 const toEdit = (id: string) => {
   navigateTo(`/admin/orders-management/edit/${id}`)
 }
 
 const toDelete = async (id: string) => {
-  await useCustomFetch(`/api/oders/${id}`, {
-    method: 'DELETE',
-  }),
-    // Cập nhật lại dữ liệu
-    fetchData()
+  ElMessageBox.confirm(
+    'proxy will permanently delete the order. Continue?',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning',
+    },
+  )
+    .then(async () => {
+      await useCustomFetch(`/api/oders/${id}`, {
+        method: 'DELETE',
+      }),
+        // Cập nhật lại dữ liệu
+        fetchData()
 
-  ElNotification({
-    title: 'Success',
-    message: 'You have successfully delete the order',
-    type: 'success',
-  })
+      ElNotification({
+        type: 'success',
+        message: 'Delete completed',
+        duration: 4000,
+      })
+    })
+    .catch(() => {
+      ElNotification({
+        type: 'info',
+        message: 'Delete canceled',
+        duration: 4000,
+      })
+    })
 }
 </script>
