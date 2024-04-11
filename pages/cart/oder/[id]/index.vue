@@ -57,7 +57,7 @@ const id = route.params.id
 let orderDetail = ref<Order>()
 
 try {
-  const { data, error } = await useCustomFetch<Order>(`/api/oders/${id}`, {
+  const { data, error } = await useFetch<Order>(`/api/oders/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
