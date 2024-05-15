@@ -88,12 +88,7 @@
               <li class="cart-infor__payment__item">
                 <el-radio :label="'banking'">Chuyển khoản ngân hàng</el-radio>
                 <div class="item-des">
-                  <p>
-                    Bạn ở HN và muốn tặng quà cho bạn mình ở HCM, bạn ở Huế và
-                    muốn tặng quà bạn mình ở Đà Nẵng, bạn muốn bên trong quà
-                    tặng của bạn có 1 tấm thiệp ghi những lời chúc của bạn tới
-                    người thân! Rất đơn giản, chúng tôi có giải pháp cho bạn …
-                  </p>
+                  <p>Thanh toán bằng mã QR Code</p>
                 </div>
               </li>
               <li class="cart-infor__payment__item">
@@ -102,6 +97,18 @@
                   <p>Thanh toán khi nhận hàng</p>
                 </div>
               </li>
+              <li class="cart-infor__payment__item">
+                <el-radio :label="'paypal'">Thanh toán bằng PAYPAL</el-radio>
+                <div class="item-des">
+                  <p>Thanh toán bằng PayPal</p>
+                </div>
+              </li>
+              <!-- <li class="cart-infor__payment__item">
+                <el-radio :label="'vnpay'">Thanh toán bằng VNPAY</el-radio>
+                <div class="item-des">
+                  <p>Thanh toán bằng VNPay</p>
+                </div>
+              </li> -->
             </el-radio-group>
           </el-form-item>
         </ul>
@@ -227,8 +234,8 @@ const onSubmit = async () => {
         // Gửi email xác nhận đến email của người dùng
         sendMail(templateParams)
 
-        // Chuyển hướng người dùng sau khi đặt hàng thành công đến trang đơn hàng
-        router.push({ path: `/cart/oder` })
+        // Chuyển hướng người dùng sau khi đặt hàng thành công đến trang thanh toán
+        router.push({ path: `/cart/payment` })
       } else if (error) {
         console.error('Lỗi khi gửi yêu cầu đặt hàng:', error)
       }
@@ -237,7 +244,7 @@ const onSubmit = async () => {
       formRef?.value?.resetFields()
 
       // Xóa dữ liệu sản phẩm khỏi cartStore hoặc gán lại dữ liệu mặc định
-      cartStore.cart = {}
+      // cartStore.cart = {}
     } catch (error) {
       console.error('Lỗi khi gửi yêu cầu đặt hàng:', error)
     }
