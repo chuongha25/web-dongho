@@ -31,7 +31,10 @@
     "nodemailer": "^6.9.12",
     "nuxt": "^3.10.2",
     "nuxt-mail": "^4.0.3",
+    "paypal-checkout": "^4.0.343",
     "pinia": "^2.1.7",
+    "qrcode": "^1.5.3",
+    "vn-payments": "1.0.0",
     "vue": "^3.4.19",
     "vue-chartjs": "^5.3.0",
     "vue-router": "^4.2.5"

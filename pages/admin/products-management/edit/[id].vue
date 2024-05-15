@@ -6,11 +6,6 @@
         <h1>Edit Product!</h1>
       </div>
       <div class="flex flex-col items-center" v-if="form">
-        <el-image
-          class="mb-4"
-          style="width: 150px; height: 150px"
-          :src="form.imagesDetail.imageLarge"
-        />
         <el-form
           ref="formRef"
           :rules="rules"
@@ -18,8 +13,39 @@
           class="max-w-[500px] w-full"
           label-position="top"
         >
+          <el-form-item
+            :label="`images ${index + 1}`"
+            v-for="(item, index) in form.images"
+            :key="index"
+            :prop="'images.' + index"
+            :rules="{
+              required: true,
+              message: 'Vui lòng nhập url',
+              trigger: 'change',
+            }"
+          >
+            <el-card class="w-full">
+              <div class="flex justify-center items-center mx-auto my-0">
+                <el-image
+                  class="m-2"
+                  style="width: 150px; height: 150px"
+                  :src="item"
+                />
+              </div>
+              <el-input type="text" v-model="form.images[index]" />
+            </el-card>
+          </el-form-item>
           <el-form-item label="imageLarge" prop="imagesDetail.imageLarge">
-            <el-input v-model="form.imagesDetail.imageLarge" />
+            <el-card class="w-full">
+              <div class="flex justify-center items-center">
+                <el-image
+                  class="m-2"
+                  style="width: 70px; height: 60px"
+                  :src="form.imagesDetail.imageLarge"
+                />
+              </div>
+              <el-input type="text" v-model="form.imagesDetail.imageLarge" />
+            </el-card>
           </el-form-item>
 
           <el-form-item
@@ -59,6 +85,9 @@
           <el-form-item label="Branch" prop="branch">
             <el-input v-model="form.branch" />
           </el-form-item>
+          <el-form-item label="logoBrand" prop="logoBrand">
+            <el-input v-model="form.logoBrand" />
+          </el-form-item>
           <el-form-item label="Category" prop="category">
             <el-checkbox-group v-model="form.category" size="large">
               <el-checkbox
@@ -69,6 +98,9 @@
                 size="large"
               />
             </el-checkbox-group>
+          </el-form-item>
+          <el-form-item label="productCode" prop="productCode">
+            <el-input v-model="form.productCode" />
           </el-form-item>
           <el-form-item label="Description" prop="description">
             <el-input v-model="form.description" />
@@ -108,8 +140,14 @@ const rules = reactive<FormRules<typeof form>>({
   branch: [
     { required: true, message: 'Vui lòng nhập branch', trigger: 'change' },
   ],
+  logoBrand: [
+    { required: true, message: 'Vui lòng nhập branch', trigger: 'change' },
+  ],
   category: [
     { required: true, message: 'Vui lòng nhập category', trigger: 'change' },
+  ],
+  productCode: [
+    { required: true, message: 'Vui lòng nhập branch', trigger: 'change' },
   ],
   description: [
     { required: true, message: 'Vui lòng nhập description', trigger: 'change' },
@@ -119,11 +157,11 @@ const rules = reactive<FormRules<typeof form>>({
   ],
 })
 
-const rulesThumbnail = (rule: any, value: any, callback: any) => {
-  if (!value) callback(new Error('Please input the password'))
+// const rulesThumbnail = (rule: any, value: any, callback: any) => {
+//   if (!value) callback(new Error('Please input the password'))
 
-  callback()
-}
+//   callback()
+// }
 
 const { data } = await useCustomFetch<Product>(
   `/api/products/${route.params?.id}`,

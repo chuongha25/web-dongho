@@ -112,7 +112,12 @@ const goBack = () => {
   navigateTo('/admin/orders-management')
 }
 
-const statusOrder = ['DAT_HANG', 'XU_LY', 'VAN_CHUYEN', 'HOAN_THANH']
+const statusOrder = [
+  'DAT_HANG',
+  'CHUA THANH TOAN',
+  'DA THANH TOAN',
+  'HOAN_THANH',
+]
 </script>
 
 <style lang="scss" scoped>

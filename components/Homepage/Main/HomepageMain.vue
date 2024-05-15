@@ -4,7 +4,8 @@
     <HomepageAlbums title="Bộ sưu tập nổi bật" />
 
     <ProductSelling
-      v-for="item in props.categorySelling"
+      v-for="(item, index) in props.categorySelling"
+      :key="index"
       :category="item.name"
       :title="item.description"
     />

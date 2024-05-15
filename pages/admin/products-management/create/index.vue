@@ -13,15 +13,27 @@
           class="max-w-[500px] w-full"
           label-position="top"
         >
-          <div class="flex justify-center">
-            <el-image
-              class="mb-4 items-center"
-              style="width: 150px; height: 150px"
-              :src="form.images"
-            />
-          </div>
-          <el-form-item label="images" prop="images">
-            <el-input type="text" v-model="form.images" />
+          <el-form-item
+            :label="`images ${index + 1}`"
+            v-for="(item, index) in form.images"
+            :key="index"
+            :prop="'images.' + index"
+            :rules="{
+              required: true,
+              message: 'Vui lòng nhập url',
+              trigger: 'change',
+            }"
+          >
+            <el-card class="w-full">
+              <div class="flex justify-center items-center mx-auto my-0">
+                <el-image
+                  class="m-2"
+                  style="width: 150px; height: 150px"
+                  :src="item"
+                />
+              </div>
+              <el-input type="text" v-model="form.images[index]" />
+            </el-card>
           </el-form-item>
           <el-form-item label="imageLarge" prop="imagesDetail.imageLarge">
             <el-card class="w-full">
@@ -115,7 +127,7 @@ import { ElNotification } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 
 const form = reactive({
-  images: '',
+  images: ['', ''],
   imagesDetail: {
     imageLarge: '',
     thumbnailImages: [''],
@@ -141,13 +153,13 @@ const rules = reactive<FormRules<typeof form>>({
     { required: true, message: 'Vui lòng nhập branch', trigger: 'change' },
   ],
   logoBrand: [
-    { required: true, message: 'Vui lòng nhập branch', trigger: 'change' },
+    { required: true, message: 'Vui lòng nhập logoBranch', trigger: 'change' },
   ],
   category: [
     { required: true, message: 'Vui lòng nhập category', trigger: 'change' },
   ],
   productCode: [
-    { required: true, message: 'Vui lòng nhập branch', trigger: 'change' },
+    { required: true, message: 'Vui lòng nhập productCode', trigger: 'change' },
   ],
   description: [
     { required: true, message: 'Vui lòng nhập description', trigger: 'change' },
